@@ -9,11 +9,21 @@
 /* Begin PBXBuildFile section */
 		A35CF0DD1B0C01AB00356086 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A35CF0DC1B0C01AB00356086 /* main.m */; };
 		A35CF0E01B0C01AB00356086 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A35CF0DF1B0C01AB00356086 /* AppDelegate.m */; };
-		A35CF0E31B0C01AB00356086 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A35CF0E21B0C01AB00356086 /* ViewController.m */; };
+		A35CF0E31B0C01AB00356086 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A35CF0E21B0C01AB00356086 /* LoginViewController.m */; };
 		A35CF0E61B0C01AB00356086 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A35CF0E41B0C01AB00356086 /* Main.storyboard */; };
 		A35CF0E81B0C01AB00356086 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A35CF0E71B0C01AB00356086 /* Images.xcassets */; };
 		A35CF0EB1B0C01AB00356086 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A35CF0E91B0C01AB00356086 /* LaunchScreen.xib */; };
 		A35CF0F71B0C01AB00356086 /* iGordonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A35CF0F61B0C01AB00356086 /* iGordonTests.m */; };
+		A35CF1021B0C01E500356086 /* MainDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A35CF1011B0C01E500356086 /* MainDataViewController.m */; };
+		A35CF1071B0D35CD00356086 /* icon-512.png in Resources */ = {isa = PBXBuildFile; fileRef = A35CF1061B0D35CD00356086 /* icon-512.png */; };
+		A35CF1091B0D5D0000356086 /* Default~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = A35CF1081B0D5D0000356086 /* Default~iphone.png */; };
+		A35CF11D1B0EA62100356086 /* calculator.png in Resources */ = {isa = PBXBuildFile; fileRef = A35CF11C1B0EA62100356086 /* calculator.png */; };
+		A35CF1241B0EA75800356086 /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = A35CF11E1B0EA75800356086 /* calendar.png */; };
+		A35CF1251B0EA75800356086 /* chapel.png in Resources */ = {isa = PBXBuildFile; fileRef = A35CF11F1B0EA75800356086 /* chapel.png */; };
+		A35CF1261B0EA75800356086 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = A35CF1201B0EA75800356086 /* logo.png */; };
+		A35CF1271B0EA75800356086 /* person.png in Resources */ = {isa = PBXBuildFile; fileRef = A35CF1211B0EA75800356086 /* person.png */; };
+		A35CF1281B0EA75800356086 /* silverware.png in Resources */ = {isa = PBXBuildFile; fileRef = A35CF1221B0EA75800356086 /* silverware.png */; };
+		A35CF1291B0EA75800356086 /* thermometer.png in Resources */ = {isa = PBXBuildFile; fileRef = A35CF1231B0EA75800356086 /* thermometer.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +42,25 @@
 		A35CF0DC1B0C01AB00356086 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A35CF0DE1B0C01AB00356086 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A35CF0DF1B0C01AB00356086 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		A35CF0E11B0C01AB00356086 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		A35CF0E21B0C01AB00356086 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		A35CF0E11B0C01AB00356086 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		A35CF0E21B0C01AB00356086 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		A35CF0E51B0C01AB00356086 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A35CF0E71B0C01AB00356086 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A35CF0EA1B0C01AB00356086 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		A35CF0F01B0C01AB00356086 /* iGordonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iGordonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A35CF0F51B0C01AB00356086 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A35CF0F61B0C01AB00356086 /* iGordonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iGordonTests.m; sourceTree = "<group>"; };
+		A35CF1001B0C01E500356086 /* MainDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainDataViewController.h; sourceTree = "<group>"; };
+		A35CF1011B0C01E500356086 /* MainDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainDataViewController.m; sourceTree = "<group>"; };
+		A35CF1061B0D35CD00356086 /* icon-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-512.png"; sourceTree = "<group>"; };
+		A35CF1081B0D5D0000356086 /* Default~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default~iphone.png"; sourceTree = "<group>"; };
+		A35CF11C1B0EA62100356086 /* calculator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calculator.png; sourceTree = "<group>"; };
+		A35CF11E1B0EA75800356086 /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar.png; sourceTree = "<group>"; };
+		A35CF11F1B0EA75800356086 /* chapel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chapel.png; sourceTree = "<group>"; };
+		A35CF1201B0EA75800356086 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		A35CF1211B0EA75800356086 /* person.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = person.png; sourceTree = "<group>"; };
+		A35CF1221B0EA75800356086 /* silverware.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = silverware.png; sourceTree = "<group>"; };
+		A35CF1231B0EA75800356086 /* thermometer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thermometer.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,8 +104,10 @@
 			children = (
 				A35CF0DE1B0C01AB00356086 /* AppDelegate.h */,
 				A35CF0DF1B0C01AB00356086 /* AppDelegate.m */,
-				A35CF0E11B0C01AB00356086 /* ViewController.h */,
-				A35CF0E21B0C01AB00356086 /* ViewController.m */,
+				A35CF0E11B0C01AB00356086 /* LoginViewController.h */,
+				A35CF0E21B0C01AB00356086 /* LoginViewController.m */,
+				A35CF1001B0C01E500356086 /* MainDataViewController.h */,
+				A35CF1011B0C01E500356086 /* MainDataViewController.m */,
 				A35CF0E41B0C01AB00356086 /* Main.storyboard */,
 				A35CF0E71B0C01AB00356086 /* Images.xcassets */,
 				A35CF0E91B0C01AB00356086 /* LaunchScreen.xib */,
@@ -96,6 +119,15 @@
 		A35CF0DA1B0C01AB00356086 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A35CF1081B0D5D0000356086 /* Default~iphone.png */,
+				A35CF11E1B0EA75800356086 /* calendar.png */,
+				A35CF11F1B0EA75800356086 /* chapel.png */,
+				A35CF1201B0EA75800356086 /* logo.png */,
+				A35CF1211B0EA75800356086 /* person.png */,
+				A35CF1221B0EA75800356086 /* silverware.png */,
+				A35CF1231B0EA75800356086 /* thermometer.png */,
+				A35CF11C1B0EA62100356086 /* calculator.png */,
+				A35CF1061B0D35CD00356086 /* icon-512.png */,
 				A35CF0DB1B0C01AB00356086 /* Info.plist */,
 				A35CF0DC1B0C01AB00356086 /* main.m */,
 			);
@@ -199,9 +231,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A35CF1281B0EA75800356086 /* silverware.png in Resources */,
+				A35CF1241B0EA75800356086 /* calendar.png in Resources */,
+				A35CF1291B0EA75800356086 /* thermometer.png in Resources */,
 				A35CF0E61B0C01AB00356086 /* Main.storyboard in Resources */,
+				A35CF1261B0EA75800356086 /* logo.png in Resources */,
+				A35CF1251B0EA75800356086 /* chapel.png in Resources */,
+				A35CF1271B0EA75800356086 /* person.png in Resources */,
+				A35CF1071B0D35CD00356086 /* icon-512.png in Resources */,
 				A35CF0EB1B0C01AB00356086 /* LaunchScreen.xib in Resources */,
+				A35CF1091B0D5D0000356086 /* Default~iphone.png in Resources */,
 				A35CF0E81B0C01AB00356086 /* Images.xcassets in Resources */,
+				A35CF11D1B0EA62100356086 /* calculator.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,8 +260,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A35CF0E31B0C01AB00356086 /* ViewController.m in Sources */,
+				A35CF0E31B0C01AB00356086 /* LoginViewController.m in Sources */,
 				A35CF0E01B0C01AB00356086 /* AppDelegate.m in Sources */,
+				A35CF1021B0C01E500356086 /* MainDataViewController.m in Sources */,
 				A35CF0DD1B0C01AB00356086 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

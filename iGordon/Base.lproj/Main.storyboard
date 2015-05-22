@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="LoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -15,11 +15,229 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UC1-Ra-gpk">
+                                <rect key="frame" x="10" y="280" width="81" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MUL-i3-g7U">
+                                <rect key="frame" x="10" y="336" width="81" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Firstname.Lastname" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fFu-N8-Fld">
+                                <rect key="frame" x="78" y="271" width="147" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Gordon Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P5N-hq-tq8">
+                                <rect key="frame" x="78" y="327" width="147" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter your credentials for Go Gordon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JlO-c1-xFu">
+                                <rect key="frame" x="10" y="239" width="197" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xDQ-H9-of1">
+                                <rect key="frame" x="109" y="378" width="85" height="30"/>
+                                <state key="normal" title="All done!">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnLogin" destination="vXZ-lx-hvc" eventType="touchUpInside" id="GBc-VA-EpQ"/>
+                                </connections>
+                            </button>
+                            <imageView opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon-512.png" translatesAutoresizingMaskIntoConstraints="NO" id="In4-DX-WYN">
+                                <rect key="frame" x="16" y="66" width="240" height="165"/>
+                                <color key="tintColor" red="0.019375423230000001" green="0.20870505589999999" blue="0.37614425509999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.3002938913811366" blue="0.49019491792929293" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="imgGocoChapel" destination="In4-DX-WYN" id="Zq6-Vu-ZJw"/>
+                        <outlet property="lblEnterYourUserPass" destination="JlO-c1-xFu" id="DHS-PF-6QF"/>
+                        <outlet property="txtUserName" destination="fFu-N8-Fld" id="WtU-vs-zbk"/>
+                        <outlet property="txtUserPassword" destination="P5N-hq-tq8" id="Ele-G7-DzM"/>
+                        <segue destination="u4T-8x-uZc" kind="show" identifier="goMainDataViewController" id="9A1-Ny-UnT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-508" y="194"/>
+        </scene>
+        <!--Main Data View Controller-->
+        <scene sceneID="eid-jm-LuD">
+            <objects>
+                <viewController id="u4T-8x-uZc" customClass="MainDataViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gFO-AQ-tI7"/>
+                        <viewControllerLayoutGuide type="bottom" id="9JV-hE-wWq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8yL-J4-d5X">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TEMPERATURE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DQe-L7-7ou">
+                                <rect key="frame" x="155" y="662" width="315" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PXq-PL-Kse">
+                                <rect key="frame" x="16" y="653" width="84" height="30"/>
+                                <state key="normal" title="temperature">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnGetStudentInfo:" destination="u4T-8x-uZc" eventType="touchUpInside" id="1E2-zM-dpk"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="  CL&amp;W CREDITS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4hn-j3-mJf">
+                                <rect key="frame" x="155" y="0.0" width="445" height="66"/>
+                                <color key="backgroundColor" red="0.019375423230000001" green="0.20870505589999999" blue="0.37614425509999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="  MEALPOINTS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YHJ-jV-KYN">
+                                <rect key="frame" x="155" y="66" width="445" height="66"/>
+                                <color key="backgroundColor" red="1" green="0.72878283300000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="  MEALPOINTS LETF/DAY" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRp-7R-5ci">
+                                <rect key="frame" x="155" y="132" width="445" height="66"/>
+                                <color key="backgroundColor" red="0.8489509931" green="0.01023251842" blue="0.88397648360000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="  DAYS LEFT IN SEMESTER" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IfL-Xu-gTo">
+                                <rect key="frame" x="155" y="198" width="445" height="66"/>
+                                <color key="backgroundColor" red="0.0" green="1" blue="0.50797730279999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="  STUDENT ID" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2NH-iI-Y9b">
+                                <rect key="frame" x="155" y="264" width="445" height="66"/>
+                                <color key="backgroundColor" red="1" green="0.14118574389999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H4c-LY-Ext">
+                                <rect key="frame" x="0.0" y="0.0" width="159" height="66"/>
+                                <color key="backgroundColor" red="0.019375423230000001" green="0.20870505589999999" blue="0.37614425509999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="1"/>
+                                <state key="normal" title="chapelcredits" image="chapel.png">
+                                    <color key="titleColor" red="0.0" green="0.025171002009999999" blue="0.39155224119999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnGetStudentInfo:" destination="u4T-8x-uZc" eventType="touchUpInside" id="TmN-d3-tEX"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mAt-cL-BrE">
+                                <rect key="frame" x="0.0" y="66" width="159" height="66"/>
+                                <color key="backgroundColor" red="1" green="0.72878283299905489" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="1"/>
+                                <state key="normal" title="mealpoints" image="silverware.png">
+                                    <color key="titleColor" red="1" green="0.72878283300000002" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnGetStudentInfo:" destination="u4T-8x-uZc" eventType="touchUpInside" id="8WY-mt-7mH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VEe-rc-7DN">
+                                <rect key="frame" x="0.0" y="132" width="159" height="66"/>
+                                <color key="backgroundColor" red="0.84895099307470467" green="0.01023251841820718" blue="0.88397648358585856" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="1"/>
+                                <state key="normal" title="mealpointsperday" image="calculator.png">
+                                    <color key="titleColor" red="0.8489509931" green="0.01023251842" blue="0.88397648360000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnGetStudentInfo:" destination="u4T-8x-uZc" eventType="touchUpInside" id="j1s-Gz-xbM"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rs4-Qk-3mG">
+                                <rect key="frame" x="0.0" y="198" width="159" height="66"/>
+                                <color key="backgroundColor" red="0.0" green="1" blue="0.50797730279999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="1"/>
+                                <state key="normal" title="daysleftinsemester" image="calendar.png">
+                                    <color key="titleColor" red="0.0" green="1" blue="0.50797730279999997" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnGetStudentInfo:" destination="u4T-8x-uZc" eventType="touchUpInside" id="zlw-QH-Jj3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0qE-rw-UG4">
+                                <rect key="frame" x="0.0" y="264" width="159" height="66"/>
+                                <color key="backgroundColor" red="1" green="0.14118574389999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="1"/>
+                                <state key="normal" title="studentid" image="person.png">
+                                    <color key="titleColor" red="1" green="0.14118574389999999" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnGetStudentInfo:" destination="u4T-8x-uZc" eventType="touchUpInside" id="bZz-e9-2ZI"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Swr-Jy-k2u">
+                                <rect key="frame" x="0.0" y="330" width="159" height="66"/>
+                                <color key="backgroundColor" red="0.0" green="0.90228628844139991" blue="0.94998816287878785" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="1"/>
+                                <state key="normal" title="temperature" image="thermometer.png">
+                                    <color key="titleColor" red="0.0" green="0.90228628840000002" blue="0.94998816289999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnGetStudentInfo:" destination="u4T-8x-uZc" eventType="touchUpInside" id="0QH-UN-z9m"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Temperature" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NYi-mQ-uSa">
+                                <rect key="frame" x="155" y="330" width="445" height="66"/>
+                                <color key="backgroundColor" red="0.0" green="0.90228628840000002" blue="0.94998816289999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="lblChapelCredits" destination="4hn-j3-mJf" id="pQN-Q6-AMy"/>
+                        <outlet property="lblDaysLeftSemester" destination="IfL-Xu-gTo" id="hhY-ET-aJN"/>
+                        <outlet property="lblMealPointsLeftPerDay" destination="eRp-7R-5ci" id="xvr-Cm-PDr"/>
+                        <outlet property="lblStudentID" destination="2NH-iI-Y9b" id="YDC-4x-1bG"/>
+                        <outlet property="lblTemperature" destination="NYi-mQ-uSa" id="p0u-HT-BCU"/>
+                        <outlet property="lblTotalMealPoints" destination="YHJ-jV-KYN" id="VOg-Cq-GL6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8ti-aj-wXe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="315" y="124"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="calculator.png" width="50" height="50"/>
+        <image name="calendar.png" width="50" height="50"/>
+        <image name="chapel.png" width="50" height="50"/>
+        <image name="icon-512.png" width="512" height="512"/>
+        <image name="person.png" width="50" height="50"/>
+        <image name="silverware.png" width="50" height="50"/>
+        <image name="thermometer.png" width="50" height="50"/>
+    </resources>
 </document>
