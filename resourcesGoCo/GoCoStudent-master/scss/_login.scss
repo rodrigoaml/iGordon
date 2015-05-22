@@ -1,0 +1,53 @@
+.login-content {
+  .gordon-chapel {
+    @extend .horizontal-center;
+    width: 30vmin;
+    margin-top: 2.5vh;
+  }
+  .login-title {
+    font-size: 9vmin;
+    margin-top: 0;
+    text-align: center;
+  }
+  .login-form {
+    .item {
+      margin-top: 5px;
+      margin-bottom: 0;
+      &.has-error {
+        border-bottom: 2px solid red;
+        .input-label {
+          color: red;
+        }
+      }
+      &.valid {
+        border-bottom: 2px solid green;
+        .input-label {
+          color: green;
+        }
+      }
+    }
+    .login-info {
+      margin-top: 2.5vh;
+      font-size: 1rem;
+      color: color(white);
+    }
+    .login-errors {
+      text-align: left;
+      font-weight: 500;
+      color: red;
+    }
+    .login-button {
+      @extend .horizontal-center;
+      width: 75%;
+      .loading-indicator {
+        @extend .center;
+      }
+    }
+  }
+  &.status-invalid {
+    .invalid-text {
+      font-weight: 800;
+      color: color(dark-yellow);
+    }
+  }
+}

@@ -1,0 +1,49 @@
+.loading {
+  @extend .animated;
+  @extend .infinite;
+  @extend .fadeCycle;
+}
+
+.button-animated {
+  @extend .animated;
+  @extend .infinite;
+  @extend .moduleColorCycle;
+}
+
+// Only on grade a and grade b devices
+.grade-a,
+.grade-b {
+
+  // Login slide in effect
+  .login-top-half,
+  .login-bottom-half {
+    @extend .animated;
+  }
+  .login-top-half {
+    @extend .slideInDown;
+  }
+  .login-bottom-half {
+    @extend .slideInUp;
+  }
+}
+
+// Only on grade a devices
+.grade-a {
+  // Chapel credit and meal points zoom in on load
+  .info-number {
+    &.ng-hide-remove {
+      @extend .animated;
+      @extend .zoomIn;
+    }
+  }
+  // Login checking timeout button slide in up on timeout
+  .login-check-timeout {
+    &.ng-hide-remove {
+      @extend .animated;
+      -webkit-animation-name: fadeIn, addTopMargin;
+              animation-name: fadeIn, addTopMargin;
+      -webkit-animation-delay: 0s, 0s;
+              animation-delay: 0s, 0s;
+    }
+  }
+}

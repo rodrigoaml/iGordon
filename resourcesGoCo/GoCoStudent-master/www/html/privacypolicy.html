@@ -1,0 +1,22 @@
+<ion-view class="gordon-blue-background" view-title="Post Login" cache-view="false">
+  <ion-content class="privacy-policy-content center text-center">
+    <h2>Privacy Policy</h2>
+    <p class="privacy-policy-text">
+      Your password and student ID number are <em>never</em> stored
+      anywhere except on your device.
+      <br><br>
+      By default, data you access in this app is stored in a secure
+      database to improve your user experience.
+      <br><br>
+      Tap "Continue storing data" to agree to this privacy policy.
+    </p>
+    <button ng-click="privacyPolicy.go(false)"
+      class="button button-opt-out">
+      Opt Out
+    </button>
+    <button ng-click="privacyPolicy.go(true)"
+      class="button button-continue">
+      Continue storing data →
+    </button>
+  </ion-content>
+</ion-view>

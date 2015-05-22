@@ -1,0 +1,20 @@
+<ion-view class="gordon-blue-background" view-title="Home" cache-view="false">
+  <app-header></app-header>
+  <ion-content class="home-content center text-center has-header"
+    ng-class="{'has-footer': home.hasBanner, 'scroll-enabled': home.scrollEnabled}"
+    scroll="true"
+    overflow-scroll="true">
+    <info-module
+      ng-repeat="module in selectedModules"
+      info-type="module.name"
+      info-label="module.label"
+      icon-class="module.icon"
+      color-class="module.color"
+      font-size="module.fontSize"
+      info-prefix="module.prefix"
+      info-suffix="module.suffix"
+      load-callback="home.refreshAppInfo()"
+      ng-class="home.moduleClass"></info-module>
+  </ion-content>
+  <app-banner></app-banner>
+</ion-view>

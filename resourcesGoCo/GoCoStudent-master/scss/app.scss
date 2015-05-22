@@ -1,0 +1,110 @@
+@import "variables";
+@import "functions";
+
+@each $color, $hex in $colors {
+  .#{"" + $color} {
+    background-color: $hex !important;
+  }
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-weight: 700;
+  src: url('../fonts/OpenSans-Bold.ttf') format('truetype');
+}
+body,
+input,
+button,
+select,
+textarea {
+  font-family: 'Open Sans';
+}
+.bar.bar-header {
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  h1.title {
+    color: color(blue);
+    font-family: 'Open Sans', sans-serif;
+  }
+  .button-icon {
+    color: color(blue);
+  }
+}
+// Override default background color
+.view.gordon-blue-background,
+.pane.gordon-blue-background {
+  background-color: color(blue);
+}
+// Override default font sizes
+.scroll-content {
+  h1 { font-size: 20vw; line-height: 1; }
+  h2 { font-size: 10vw; }
+  h3 { font-size: 6vw; }
+  h1, h2, h3 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: color(white);
+  }
+  .text-container {
+    margin-left: 1em;
+    margin-right: 1em;
+  }
+}
+// Override Android popover styles to make 'logout' red
+.platform-android .popover .item.assertive {
+  color: $assertive;
+}
+// Override Android popover styles to make 'options' blue
+.platform-android .popover .item.positive {
+  color: $positive;
+}
+// Make Modal only cover part of the screen
+.modal {
+  &.banner-modal {
+    top: 45vh;
+  }
+}
+.button-animated {
+  color: color(white);
+}
+.banner-content {
+  padding: 15px;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+}
+app-banner > ion-footer-bar.bar {
+  z-index: 11;
+}
+// Override bar-header height change in iOS modal
+.platform-ios.platform-cordova:not(.fullscreen) {
+  .modal {
+    .bar-header:not(.bar-subheader) {
+      height: $bar-height;
+
+      > * {
+        margin-top: 0;
+      }
+    }
+    // ion-content push
+    .has-header {
+      top: $bar-height;
+    }
+  }
+}
+
+a,
+a:visited {
+  font-family: 'Open Sans';
+  color: color(blue);
+  text-decoration: none;
+}
+
+@import "keyframes";
+@import "animations";
+
+@import "configuration";
+@import "home";
+@import "infomodule";
+@import "login";
+@import "privacypolicy";
+@import "utility";

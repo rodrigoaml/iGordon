@@ -1,0 +1,33 @@
+{
+  "name": "goco-student",
+  "version": "2.2",
+  "description": "GoCo Student: An Ionic project",
+  "dependencies": {
+    "bufferstreams": "0.0.2",
+    "clean-css": "^3.0.10",
+    "gulp": "^3.8.11",
+    "gulp-concat": "^2.5.0",
+    "gulp-minify-css": "^0.3.13",
+    "gulp-rename": "^1.2.0",
+    "gulp-sass": "^0.7.3",
+    "memory-cache": "0.0.5",
+    "through2": "^0.6.3",
+    "vinyl-sourcemaps-apply": "^0.1.4"
+  },
+  "devDependencies": {
+    "bower": "^1.3.3",
+    "gulp-ruby-sass": "^1.0.5",
+    "gulp-util": "^2.2.14",
+    "shelljs": "^0.3.0"
+  },
+  "cordovaPlugins": [
+    "org.apache.cordova.inappbrowser",
+    "https://github.com/danwilson/google-analytics-plugin.git",
+    "./engine/cordova-crosswalk-engine-c0.7.1",
+    "org.apache.cordova.splashscreen",
+    "https://github.com/apache/cordova-plugin-whitelist.git"
+  ],
+  "cordovaPlatforms": [
+    "ios"
+  ]
+}

@@ -1,0 +1,20 @@
+<ion-popover-view>
+  <ion-content>
+    <ion-list ng-click="popover.hidePopover('menu')">
+      <ion-item>
+        Yell at me <a href="" onclick="window.open('https://twitter.com/MeetAdamJohn', '_system', 'location=yes'); return false;">@MeetAdamJohn</a>
+      </ion-item>
+      <ion-item>
+        Stalk me at <a href="" onclick="window.open('http://www.adamvig.com/', '_system', 'location=yes'); return false;">AdamVig.com</a>
+      </ion-item>
+      <ion-item class="positive"
+        ng-click="modal.toggleModal('configuration')">
+        Options
+      </ion-item>
+      <ion-item class="assertive"
+        ng-click="logout()">
+        Logout
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-popover-view>

@@ -1,0 +1,31 @@
+<ion-modal-view class="configuration-modal">
+  <ion-header-bar>
+    <h1 class="title" ng-click="modal.toggleModal('configuration')">Tap to close</h1>
+    <button class="reorder-button button button-clear button-positive"
+      ng-model="showReorder"
+      ng-click="showReorder = !showReorder"
+      ng-class="{'button-assertive': showReorder}">
+      Reorder
+    </button>
+  </ion-header-bar>
+  <ion-content>
+    <ion-list show-reorder="showReorder">
+      <ion-item class="item-checkbox"
+        ng-repeat="module in modules"
+        ng-class="{'{{module.color}}': true, 'item-placeholder': !module.selected}">
+        <label class="ion-checkmark goco-checkbox"
+          ng-class="{'ion-checkmark': module.selected, 'ion-close': !module.selected, 'disabled': (selectedModules.length == 1) && (module.selected)}"
+          ng-hide="showReorder">
+          <input type="checkbox"
+            ng-model="module.selected"
+            ng-change="updateModules()"
+            ng-disabled="(selectedModules.length == 1) && (module.selected)">
+        </label>
+        <p class="item-title">{{ module.label }}</p>
+        <ion-reorder-button class="ion-navicon"
+            on-reorder="reorderModule(module, $fromIndex, $toIndex)">
+        </ion-reorder-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-modal-view>

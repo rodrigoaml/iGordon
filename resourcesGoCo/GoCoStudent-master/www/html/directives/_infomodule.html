@@ -1,0 +1,24 @@
+<button class="button button-full activated"
+  ng-class="module.fullClass"
+  ng-click="module.load()">
+  <div class="module-content"
+    ng-hide="module.errorMessage">
+    <div class="module-left column">
+      <div class="{{module.iconClass}} icon"
+        ng-class="{loading: module.loading}"
+        ng-hide="module.loading === false"></div>
+      <h1 class="info-number"
+        ng-hide="!module.data || module.loading">
+        {{module.prefix}}{{module.data}}{{module.suffix}}
+      </h1>
+    </div>
+    <div class="module-right column">
+      <h2 class="info-label"
+        ng-bind="module.label"></h2>
+    </div>
+  </div>
+  <h2 class="info-error-message"
+    ng-show="module.errorMessage  && !module.loading">
+    {{module.errorMessage}}
+  </h2>
+</button>

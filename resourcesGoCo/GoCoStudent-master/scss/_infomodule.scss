@@ -1,0 +1,143 @@
+info-module {
+  height: 100%;
+  width: 100%;
+  display: block;
+  align-items: center;
+  justify-content: center;
+  .button {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    border: 0;
+    &.button-full {
+      margin-top: 0;
+    }
+  }
+  .icon {
+    height: 30vh;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    &:before {
+      color: color(white);
+    }
+    &.chapel-icon {
+      background-image: url('../img/chapel.svg');
+    }
+    &.meal-points-icon {
+      background-image: url('../img/silverware.svg');
+    }
+    &.calculator-icon {
+      background-image: url('../img/calculator.svg');
+    }
+    &.calendar-icon {
+      background-image: url('../img/calendar.svg');
+    }
+    &.person-icon {
+      background-image: url('../img/person.svg');
+    }
+    &.thermometer-icon {
+      background-image: url('../img/thermometer.svg');
+    }
+  }
+  .column {
+    float: left;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .info-number {
+    font-size: 20vh;
+  }
+  .data-small .info-number {
+    font-size: 10vh;
+  }
+  .info-label {
+    margin-top: 15px;
+  }
+  &.one-half {
+    height: 50%;
+    .icon {
+      height: 20vh;
+    }
+    .info-number {
+      font-size: 15vh;
+    }
+    .data-small .info-number {
+      font-size: 11vh;
+    }
+  }
+  &.one-third {
+    height: 33.33%;
+    .icon {
+      margin-top: 10px;
+      height: 14vh;
+    }
+    .info-label {
+      font-size: 4.5vh;
+    }
+    .info-number {
+      font-size: 10vh;
+    }
+    .data-small .info-number {
+      font-size: 9vh;
+    }
+    .info-error-message {
+      font-size: 5.5vh;
+    }
+  }
+  &.one-fourth {
+    height: 25%;
+    .icon {
+      height: 13vh;
+    }
+  }
+  &.one-fifth {
+    height: 20%;
+    .icon {
+      height: 11vh;
+    }
+  }
+  &.one-fourth,
+  &.one-fifth {
+    .info-error-message {
+      font-size: 4.5vh;
+    }
+  }
+  &.list-item {
+    height: 17.5%;
+    .icon {
+      height: 10vh;
+    }
+    .info-error-message {
+      font-size: 3.75vh;
+    }
+  }
+  &.one-fourth,
+  &.one-fifth,
+  &.list-item {
+    .module-content {
+      @extend .center;
+    }
+    .module-left {
+      width: 40%;
+    }
+    .module-right {
+      width: 60%;
+    }
+    .info-number {
+      margin-top: 10px;
+      font-size: 6vh;
+    }
+    .data-small .info-number {
+      font-size: 5.5vh;
+      line-height: 6.5vh;
+    }
+    .info-label {
+      margin: 0;
+      font-size: 4vh;
+    }
+  }
+}

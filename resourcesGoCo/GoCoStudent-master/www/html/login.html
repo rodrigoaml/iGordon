@@ -1,0 +1,64 @@
+<ion-view class="gordon-blue-background" view-title="Login">
+  <ion-content class="login-content center"
+    ng-class="login.status">
+    <div class="login-top-half">
+      <img class="gordon-chapel"
+        src="img/logo.svg">
+      <h2 class="login-title">Log In</h2>
+    </div>
+    <form class="login-form login-bottom-half"
+      name="loginForm"
+      novalidate
+      ng-submit="login.loginUser()">
+      <p class="login-info text-left">
+        <span ng-show="!login.status">
+          Enter your credentials for Go Gordon.
+        </span>
+        <span class="invalid-text"
+          ng-show="login.status == 'status-invalid'">
+          Oops, wrong username or password!
+        </span>
+      </p>
+      <div class="list">
+        <label class="item item-input"
+          ng-class="{ 'has-error' : loginForm.username.$invalid && loginForm.username.$dirty, 'valid': loginForm.username.$valid}">
+          <span class="input-label">Username</span>
+          <input type="text"
+            required
+            placeholder="Firstname.Lastname"
+            name="username"
+            ng-minlength="3"
+            ng-pattern="/(\w+)(\.)(\w+)/"
+            ng-model-options="{ updateOn: 'blur'}"
+            ng-model="login.userCredentials.username">
+        </label>
+        <ng-messages class="login-errors"
+          for="loginForm.username.$error"
+          ng-show="loginForm.username.$dirty">
+          <ng-message when="minlength">Username must be at least three letters.</ng-message>
+          <ng-message when="pattern">Username must be Firstname.Lastname.</ng-message>
+          <ng-message when="required">Username is required.</ng-message>
+        </ng-messages>
+        <label class="item item-input"
+          ng-class="{ 'has-error' : loginForm.password.$invalid && loginForm.password.$dirty, 'valid': loginForm.password.$valid}">
+          <span class="input-label">Password</span>
+          <input type="password"
+            required
+            placeholder="Gordon Password"
+            name="password"
+            ng-model="login.userCredentials.password">
+        </label>
+      </div>
+
+      <button type="submit"
+        class="login-button button button-light"
+        ng-disabled="loginForm.$invalid">
+        <span ng-show="!login.status">All done!</span>
+        <ion-spinner class="loading-indicator"
+          icon="lines"
+          ng-show="login.status == 'status-loading'"></ion-spinner>
+        <span ng-show="login.status == 'status-invalid'">Try again</span>
+      </button>
+    </form>
+  </ion-content>
+</ion-view>
