@@ -60,8 +60,6 @@
 -(void)sendRequestToServer:(NSString *)param
 {
     
-    
-    
     NSString *requestString = @"http://api.adamvig.com/gocostudent/2.2/";
     requestString  = [requestString stringByAppendingFormat:@"%@%@%@%@%@",param,@"?username=",self.userProfile[@"username"],@"&password=",self.userProfile[@"password"]];
     
