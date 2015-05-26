@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A34DABDB1B14FEA600A19DE8 /* PopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34DABDA1B14FEA600A19DE8 /* PopoverViewController.m */; };
 		A35CF0DD1B0C01AB00356086 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A35CF0DC1B0C01AB00356086 /* main.m */; };
 		A35CF0E01B0C01AB00356086 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A35CF0DF1B0C01AB00356086 /* AppDelegate.m */; };
 		A35CF0E31B0C01AB00356086 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A35CF0E21B0C01AB00356086 /* LoginViewController.m */; };
@@ -24,6 +25,8 @@
 		A35CF1271B0EA75800356086 /* person.png in Resources */ = {isa = PBXBuildFile; fileRef = A35CF1211B0EA75800356086 /* person.png */; };
 		A35CF1281B0EA75800356086 /* silverware.png in Resources */ = {isa = PBXBuildFile; fileRef = A35CF1221B0EA75800356086 /* silverware.png */; };
 		A35CF1291B0EA75800356086 /* thermometer.png in Resources */ = {isa = PBXBuildFile; fileRef = A35CF1231B0EA75800356086 /* thermometer.png */; };
+		A35CF12D1B1187BD00356086 /* tableCellDesignForUserDataOptions.xib in Resources */ = {isa = PBXBuildFile; fileRef = A35CF12C1B1187BD00356086 /* tableCellDesignForUserDataOptions.xib */; };
+		A35CF1331B118A9500356086 /* TableViewCellUserData.m in Sources */ = {isa = PBXBuildFile; fileRef = A35CF1321B118A9500356086 /* TableViewCellUserData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A34DABD91B14FEA600A19DE8 /* PopoverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverViewController.h; sourceTree = "<group>"; };
+		A34DABDA1B14FEA600A19DE8 /* PopoverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopoverViewController.m; sourceTree = "<group>"; };
 		A35CF0D71B0C01AB00356086 /* iGordon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iGordon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A35CF0DB1B0C01AB00356086 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A35CF0DC1B0C01AB00356086 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -61,6 +66,9 @@
 		A35CF1211B0EA75800356086 /* person.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = person.png; sourceTree = "<group>"; };
 		A35CF1221B0EA75800356086 /* silverware.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = silverware.png; sourceTree = "<group>"; };
 		A35CF1231B0EA75800356086 /* thermometer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thermometer.png; sourceTree = "<group>"; };
+		A35CF12C1B1187BD00356086 /* tableCellDesignForUserDataOptions.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = tableCellDesignForUserDataOptions.xib; sourceTree = "<group>"; };
+		A35CF1311B118A9500356086 /* TableViewCellUserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCellUserData.h; sourceTree = "<group>"; };
+		A35CF1321B118A9500356086 /* TableViewCellUserData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCellUserData.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,16 +110,21 @@
 		A35CF0D91B0C01AB00356086 /* iGordon */ = {
 			isa = PBXGroup;
 			children = (
+				A35CF1311B118A9500356086 /* TableViewCellUserData.h */,
+				A35CF1321B118A9500356086 /* TableViewCellUserData.m */,
 				A35CF0DE1B0C01AB00356086 /* AppDelegate.h */,
 				A35CF0DF1B0C01AB00356086 /* AppDelegate.m */,
 				A35CF0E11B0C01AB00356086 /* LoginViewController.h */,
 				A35CF0E21B0C01AB00356086 /* LoginViewController.m */,
 				A35CF1001B0C01E500356086 /* MainDataViewController.h */,
 				A35CF1011B0C01E500356086 /* MainDataViewController.m */,
+				A35CF12C1B1187BD00356086 /* tableCellDesignForUserDataOptions.xib */,
 				A35CF0E41B0C01AB00356086 /* Main.storyboard */,
 				A35CF0E71B0C01AB00356086 /* Images.xcassets */,
 				A35CF0E91B0C01AB00356086 /* LaunchScreen.xib */,
 				A35CF0DA1B0C01AB00356086 /* Supporting Files */,
+				A34DABD91B14FEA600A19DE8 /* PopoverViewController.h */,
+				A34DABDA1B14FEA600A19DE8 /* PopoverViewController.m */,
 			);
 			path = iGordon;
 			sourceTree = "<group>";
@@ -237,6 +250,7 @@
 				A35CF0E61B0C01AB00356086 /* Main.storyboard in Resources */,
 				A35CF1261B0EA75800356086 /* logo.png in Resources */,
 				A35CF1251B0EA75800356086 /* chapel.png in Resources */,
+				A35CF12D1B1187BD00356086 /* tableCellDesignForUserDataOptions.xib in Resources */,
 				A35CF1271B0EA75800356086 /* person.png in Resources */,
 				A35CF1071B0D35CD00356086 /* icon-512.png in Resources */,
 				A35CF0EB1B0C01AB00356086 /* LaunchScreen.xib in Resources */,
@@ -260,9 +274,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A34DABDB1B14FEA600A19DE8 /* PopoverViewController.m in Sources */,
 				A35CF0E31B0C01AB00356086 /* LoginViewController.m in Sources */,
 				A35CF0E01B0C01AB00356086 /* AppDelegate.m in Sources */,
 				A35CF1021B0C01E500356086 /* MainDataViewController.m in Sources */,
+				A35CF1331B118A9500356086 /* TableViewCellUserData.m in Sources */,
 				A35CF0DD1B0C01AB00356086 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -458,6 +474,7 @@
 				A35CF0FC1B0C01AB00356086 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A35CF0FD1B0C01AB00356086 /* Build configuration list for PBXNativeTarget "iGordonTests" */ = {
 			isa = XCConfigurationList;
@@ -466,6 +483,7 @@
 				A35CF0FF1B0C01AB00356086 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

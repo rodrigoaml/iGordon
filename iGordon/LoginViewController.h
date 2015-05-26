@@ -14,9 +14,13 @@
 @property (strong, nonatomic) IBOutlet UITextField *txtUserName;
 @property (strong, nonatomic) IBOutlet UITextField *txtUserPassword;
 @property (retain, nonatomic) IBOutlet UIImageView *imgGocoChapel;
+@property (weak, nonatomic) IBOutlet UILabel *lblUsername;
+@property (weak, nonatomic) IBOutlet UILabel *lblPassword;
 
 @property (nonatomic, strong) MainDataViewController *mainDataViewController;
 - (IBAction)btnLogin;
 
+#define HTTP_STATUS_CODE_BAD_LOGIN 401
+#define HTTP_STATUS_CODE_OK_LOGIN 200
 @end
 

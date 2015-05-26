@@ -7,20 +7,36 @@
 //
 
 #import "MainDataViewController.h"
+#import "TableViewCellUserData.h"
+#import "PopoverViewController.h"
 
-@interface MainDataViewController ()
+@interface MainDataViewController () <UIActionSheetDelegate, UIPopoverPresentationControllerDelegate>
 
 @property (nonatomic, strong) NSURLSession *session;
+@property (nonatomic, strong) NSString *userDataDownload;
+@property (nonatomic, strong) NSMutableArray *userFetchedData;
+@property (nonatomic, strong) UIPopoverPresentationController *userOptionsPopover;
+@property (nonatomic, strong) PopoverViewController *PopoverView;
+
 
 @end
 
 
 
 @implementation MainDataViewController
-@synthesize lblChapelCredits = _lblChapelCredits;
+
+
 @synthesize userProfile = _userProfile;
 @synthesize session = _session;
+@synthesize userDataDownload = _userDataDownload ;
+@synthesize userFetchedData = _userFetchedData ;
+@synthesize userOptionsPopover = _userOptionsPopover;
 
+
+NSArray *studentDataOptions;
+NSArray *thumbnails;
+NSArray *endPointsServerDescription;
+NSArray *endPointsViewColors;
 
 
 - (void)viewDidLoad {
@@ -33,35 +49,111 @@
                                              delegate:self
                                         delegateQueue:nil];
     
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
-- (IBAction)btnGetStudentInfo:(UIButton *)sender {
     
-    [self sendRequestToServer:[sender currentTitle]];
+    
+    // Initialize table data
+    studentDataOptions = [NSArray arrayWithObjects:@"CL&W CREDITS", @"MEALPOINTS", @"MEALPOINTS LEFT/DAY", @"DAYS LEFT IN SEMESTER", @"STUDENT ID", @"TEMPERATURE", nil];
+    
+    endPointsServerDescription = [NSArray arrayWithObjects:@"chapelcredits", @"mealpoints", @"mealpointsperday", @"daysleftinsemester", @"studentid", @"temperature", nil];
+    
+    endPointsViewColors = [NSArray arrayWithObjects:@"blueColor", @"orangeColor", @"purpleColor", @"greenColor", @"redColor", @"yellowColor", nil];
+    
+    thumbnails = [NSArray arrayWithObjects:@"chapel.png", @"silverware.png", @"calculator.png", @"calendar.png", @"person.png",@"thermometer", nil];
+    
+    
+    
+    
+}
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:NO];
+    
+     self.navigationItem.hidesBackButton = YES;
+    
+    UIBarButtonItem *optionsBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Options" style:UIBarButtonItemStylePlain target:self action:@selector(showActionSheetOptions)];
+    
+    [[self navigationItem] setRightBarButtonItem:optionsBarButton];
+    
 }
 
 
--(void)sendRequestToServer:(NSString *)param
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [studentDataOptions count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
+    
+    
+    static NSString *simpleTableIdentifier = @"tableCellDesignUserDataOptions";
+    
+    TableViewCellUserData *cell = (TableViewCellUserData *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    if (cell == nil)
+    {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"tableCellDesignForUserDataOptions" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
+    
+    cell.dataDescriptionLabel.text = [studentDataOptions objectAtIndex:indexPath.row];
+    cell.thumbnailImageView.image = [UIImage imageNamed:[thumbnails objectAtIndex:indexPath.row]];
+    
+    SEL selector = NSSelectorFromString([endPointsViewColors objectAtIndex:indexPath.row]);
+    cell.thumbnailImageView.backgroundColor = [UIColor  performSelector:selector];
+    cell.backgroundColor = [UIColor performSelector:selector];
+    cell.dataDescriptionLabel.textColor = [UIColor whiteColor];
+    cell.dataResultFromServerLabel.textColor = [UIColor whiteColor];
+    cell.dataResultFromServerLabel.text = self.userDataDownload == nil ? @"-" : self.userDataDownload;
+    self.userDataDownload = nil ;
+    
+    
+    return cell;
+
+
+}
+
+
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 80;
+}
+
+
+
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+
+{
+
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    [self loadDataFromServer:[NSString stringWithFormat:@"%@",[endPointsServerDescription objectAtIndex:indexPath.row]]];
+    
+    while (self.userDataDownload == nil) {
+       
+        
+    }
+    
+    
+    //move line to the loadDataFromServer
+    [tableView beginUpdates];
+    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    [tableView endUpdates];
+
+}
+
+-(void)loadDataFromServer: (NSString *)param
+{
+    
+    
+        
     NSString *requestString = @"http://api.adamvig.com/gocostudent/2.2/";
-    requestString  = [requestString stringByAppendingFormat:@"%@%@%@%@%@",param,@"?username=",self.userProfile[@"username"],@"&password=",self.userProfile[@"password"]];
+    requestString  = [requestString stringByAppendingFormat:@"%@%@%@%@%@",param,@"?username=",[self.userProfile objectForKey:@"username"],@"&password=",[self.userProfile objectForKey:@"password"]];
     
     
     NSURL *url = [NSURL URLWithString:requestString];
@@ -76,37 +168,99 @@
                                                                     options:0
                                                                       error:nil];
          
-         
-         dispatch_async(dispatch_get_main_queue(), ^{
-             
-             
-             if ([param isEqualToString:@"chapelcredits"]) {
-                 self.lblChapelCredits.text = [self.lblChapelCredits.text stringByAppendingFormat:@" %@",jsonObject[@"data"]];
-             } else if ([param isEqualToString:@"mealpoints"]) {
-                 self.lblTotalMealPoints.text = [self.lblTotalMealPoints.text stringByAppendingFormat:@" $%@",jsonObject[@"data"]];
-             } else if ([param isEqualToString:@"mealpointsperday"]) {
-                 self.lblMealPointsLeftPerDay.text = [self.lblMealPointsLeftPerDay.text stringByAppendingFormat:@" $%@",jsonObject[@"data"]];
-             } else if ([param isEqualToString:@"daysleftinsemester"]) {
-                 self.lblDaysLeftSemester.text = [self.lblDaysLeftSemester.text stringByAppendingFormat:@" %@",jsonObject[@"data"]];
-             } else if ([param isEqualToString:@"studentid"]){
-                 
-                 self.lblStudentID.text = [self.lblStudentID.text stringByAppendingFormat:@" %@",jsonObject[@"data"]];
-             } else if ([param isEqualToString:@"temperature"]){
-                 self.lblTemperature.text = [self.lblTemperature.text stringByAppendingFormat:@" %@ %@",jsonObject[@"data"],@"°F"];
-             }
-             
-             
-             
-             
-             
-         });
+         self.userDataDownload = [NSString stringWithFormat:@"%@", jsonObject[@"data"]];
          
          
      }];
-    
     [dataTask resume];
+        
+   
     
 }
+
+
+-(void)showActionSheetOptions
+{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Options"
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Back"
+                                               destructiveButtonTitle:nil
+                                                    otherButtonTitles:@"Logout", @"Gordon.com", @"cs.gordon", nil];
+    
+   
+    [actionSheet showInView:self.view];
+    
+    actionSheet.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
+   
+    
+}
+
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    NSString *url;
+    
+    
+    
+    switch (buttonIndex) {
+        case 0:
+            NSLog(@"Not implemented yet");
+            
+            break;
+        case 1:
+            url = @"http://www.gordon.edu";
+            break;
+        case 2:
+            url = @"http://www.cs.gordon.edu";
+            break;
+    }
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: url]];
+    
+    
+}
+
+
+
+- (IBAction)btnSelectDatePressed:(UIBarButtonItem *)sender
+{
+    
+    
+    
+    self.PopoverView =[[PopoverViewController alloc] initWithNibName:nil bundle:nil];
+    
+    self.PopoverView.modalPresentationStyle = UIModalPresentationPopover;
+    
+    
+    // Present the view controller using the popover style.
+    
+    [self presentViewController:self.PopoverView animated: YES completion: ^{
+    }];
+    
+    // Get the popover presentation controller and configure it.
+    UIPopoverPresentationController *presentationController =
+    [self.PopoverView popoverPresentationController];
+    
+    presentationController.permittedArrowDirections =
+    UIPopoverArrowDirectionDown | UIPopoverArrowDirectionLeft;
+    
+    
+    presentationController.sourceView = self.view;
+    presentationController.barButtonItem = sender;
+    //presentationController.delegate = self ;
+    presentationController.sourceRect = CGRectMake(5, 5, 5, 5);
+    
+    
+    
+    
+}
+
+- (UIModalPresentationStyle) adaptivePresentationStyleForPresentationController: (UIPresentationController * ) controller {
+    return UIModalPresentationPopover;
+}
+
+
 
 
 @end

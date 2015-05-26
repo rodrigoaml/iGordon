@@ -8,16 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MainDataViewController : UIViewController<NSURLSessionDelegate>
-@property (weak, nonatomic) IBOutlet UILabel *lblChapelCredits;
-@property (weak, nonatomic) IBOutlet UILabel *lblTotalMealPoints;
-@property (weak, nonatomic) IBOutlet UILabel *lblMealPointsLeftPerDay;
-@property (weak, nonatomic) IBOutlet UILabel *lblDaysLeftSemester;
-@property (weak, nonatomic) IBOutlet UILabel *lblStudentID;
-@property (weak, nonatomic) IBOutlet UILabel *lblTemperature;
+@interface MainDataViewController : UIViewController<NSURLSessionDelegate,UITableViewDelegate, UITableViewDataSource>
+
 @property (retain,nonatomic) NSDictionary* userProfile;
 
-- (IBAction)btnGetStudentInfo:(UIButton *)sender;
+
 
 
 @end

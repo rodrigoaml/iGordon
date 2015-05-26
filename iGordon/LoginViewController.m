@@ -14,7 +14,7 @@
 @property (nonatomic, strong) NSURLSession *session;
 @property (nonatomic, strong) NSString *userGordonName;
 @property (nonatomic, strong) NSString *userGordonPassword;
-@property (nonatomic) NSString *testDataFromServer ;
+
 
 
 @end
@@ -27,7 +27,7 @@
 @synthesize txtUserName =   _txtUserName ;
 @synthesize lblEnterYourUserPass = _lblEnterYourUserPass ;
 @synthesize mainDataViewController = _mainDataViewController ;
-@synthesize testDataFromServer  = _testDataFromServer ;
+
 
 - (void)viewDidLoad {
     
@@ -41,15 +41,28 @@
     
 }
 
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:YES];
+}
 
 - (IBAction)btnLogin {
   
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        [self.lblEnterYourUserPass performSelectorOnMainThread : @selector(setText:) withObject:@"" waitUntilDone:NO];
+        
+    });
+    
+    
+    
     NSData *nsdata = [self.txtUserPassword.text
                       dataUsingEncoding:NSUTF8StringEncoding];
     
@@ -59,17 +72,18 @@
     // Get NSString from NSData object in Base64
     self.userGordonPassword = [nsdata base64EncodedStringWithOptions:0];
     
-    [self loginGoco];
+    [self performLoginAtServer];
+    
     // necessary for the error response that takes a long time when the credentials don't exist
-    [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(validatesUserLogin) userInfo:nil repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(returnsErrorMessageBadLogin) userInfo:nil repeats:NO];
   
 }
 
--(void)loginGoco
+-(void)performLoginAtServer
 {
-    //test with /checklogin?username......
     
-    NSString *requestString = @"http://api.adamvig.com/gocostudent/2.2/chapelcredits?username=";
+    
+    NSString *requestString = @"http://api.adamvig.com/gocostudent/2.2/checklogin?username=";
     requestString  = [requestString stringByAppendingFormat:@"%@%@%@",self.userGordonName,@"&password=",self.userGordonPassword];
     
     NSURL *url = [NSURL URLWithString:requestString];
@@ -81,16 +95,25 @@
          ^(NSData *data, NSURLResponse *response, NSError *error) {
              
              dispatch_async(dispatch_get_main_queue(), ^{
-                 NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
                  
-                 self.testDataFromServer = jsonObject[@"data"];
+                 NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
+
                  
-                 [self  validatesUserLogin];
+                 if([httpResponse statusCode] == HTTP_STATUS_CODE_OK_LOGIN){
+                     dispatch_async(dispatch_get_main_queue(), ^{
+                         
+                         [self performSegueWithIdentifier:@"goMainDataTableView" sender:self.mainDataViewController];
+                         
+                     });
+                 }
+                 else{
+                   [self  returnsErrorMessageBadLogin];
+                 }
+
              });
              
              
          }];
-    
     
       [dataTask resume];
 
@@ -98,38 +121,34 @@
 
 
 
--(void)validatesUserLogin
+-(void)returnsErrorMessageBadLogin
 {
-   
-    if(self.testDataFromServer != nil){
-  
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            [self performSegueWithIdentifier:@"goMainDataViewController" sender:self.mainDataViewController];
-            
-        });
-    }
-    else{
-        
+ 
+        [self.lblEnterYourUserPass performSelectorOnMainThread : @selector(setTextColor:) withObject:[UIColor orangeColor] waitUntilDone:NO];
+        [self.lblUsername performSelectorOnMainThread : @selector(setTextColor:) withObject:[UIColor redColor] waitUntilDone:NO];
+        [self.lblPassword performSelectorOnMainThread : @selector(setTextColor:) withObject:[UIColor redColor] waitUntilDone:NO];
         [self.lblEnterYourUserPass performSelectorOnMainThread : @selector(setText:) withObject:@"User/password incorrect" waitUntilDone:NO];
-        
-        
-    }
+    
 }
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-        //Define the where the segue goes
+        //Defines where the segue goes
         self.mainDataViewController  = (MainDataViewController *)segue.destinationViewController;
     
-        //create a NSDictionary with the user profile data ( username and password )
+        //creates a NSDictionary with the user profile data ( username and password )
         NSDictionary *normalDict = [[NSDictionary alloc]initWithObjectsAndKeys:[NSString stringWithFormat: @"%@", self.userGordonName],@"username",[NSString stringWithFormat: @"%@", self.userGordonPassword],@"password",nil];
     
     
         //Store the user data in the next ViewControlles for search purposes
         self.mainDataViewController.userProfile = normalDict;
+    
+
+    
+    
 }
+
 
 
 
