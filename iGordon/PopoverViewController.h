@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PopoverViewController : UITableViewController
+@interface PopoverViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 
 @end

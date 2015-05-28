@@ -7,12 +7,21 @@
 //
 
 #import "PopoverViewController.h"
+#import "LoginViewController.h"
 
 @interface PopoverViewController ()
+
+@property (nonatomic, weak) MainDataViewController *mainDataViewController;
 
 @end
 
 @implementation PopoverViewController
+
+
+
+NSArray *itemMenuOptions;
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -22,6 +31,8 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    itemMenuOptions = [NSArray arrayWithObjects:@"Gordon.edu", @"Computer Science", @"Options", @"Logout", nil];
     
 }
 
@@ -53,9 +64,36 @@
     }
     
     // Configure the cell...
-    cell.textLabel.text = [NSString stringWithFormat:@"Row number %ld",(long)indexPath.row];
+    cell.textLabel.text = [itemMenuOptions objectAtIndex:indexPath.row];
     
     return cell;
+}
+
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+
+{
+    NSString *url;
+    
+    switch (indexPath.row) {
+        case 0:
+            url = @"http://www.gordon.edu";
+            break;
+        case 1:
+            url = @"http://www.cs.gordon.edu";
+            break;
+        case 2:
+            NSLog(@"NOT IMPLEMENTED YET");
+            break;
+        case 3:
+            NSLog(@"NOT IMPLEMENTED YET");
+            break;
+    }
+    
+    if(url != nil)
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString: url]];
+    
+    
 }
 
 
@@ -100,7 +138,10 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+ 
+    
 }
 */
+
 
 @end

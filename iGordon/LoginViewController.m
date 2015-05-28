@@ -39,6 +39,7 @@
                                              delegate:self
                                         delegateQueue:nil];
     
+    
 }
 
 
@@ -116,7 +117,16 @@
          }];
     
       [dataTask resume];
+      
+}
 
+
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [self.lblEnterYourUserPass performSelectorOnMainThread : @selector(setTextColor:) withObject:[UIColor whiteColor] waitUntilDone:NO];
+    [self.lblUsername performSelectorOnMainThread : @selector(setTextColor:) withObject:[UIColor whiteColor] waitUntilDone:NO];
+    [self.lblPassword performSelectorOnMainThread : @selector(setTextColor:) withObject:[UIColor whiteColor] waitUntilDone:NO];
+    [self.lblEnterYourUserPass performSelectorOnMainThread : @selector(setText:) withObject:@"Enter your credentials for Go Gordon" waitUntilDone:NO];
 }
 
 
@@ -129,6 +139,15 @@
         [self.lblPassword performSelectorOnMainThread : @selector(setTextColor:) withObject:[UIColor redColor] waitUntilDone:NO];
         [self.lblEnterYourUserPass performSelectorOnMainThread : @selector(setText:) withObject:@"User/password incorrect" waitUntilDone:NO];
     
+}
+
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    for (UIView * txt in self.view.subviews){
+        if ([txt isKindOfClass:[UITextField class]] && [txt isFirstResponder]) {
+            [txt resignFirstResponder];
+        }
+    }
 }
 
 

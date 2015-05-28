@@ -17,45 +17,42 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UC1-Ra-gpk">
-                                <rect key="frame" x="10" y="280" width="81" height="21"/>
+                                <rect key="frame" x="54" y="278" width="81" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MUL-i3-g7U">
-                                <rect key="frame" x="10" y="336" width="81" height="21"/>
+                                <rect key="frame" x="54" y="334" width="81" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Firstname.Lastname" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fFu-N8-Fld">
-                                <rect key="frame" x="78" y="271" width="147" height="30"/>
+                                <rect key="frame" x="122" y="269" width="147" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Gordon Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P5N-hq-tq8">
-                                <rect key="frame" x="78" y="327" width="147" height="30"/>
+                                <rect key="frame" x="122" y="325" width="147" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter your credentials for Go Gordon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JlO-c1-xFu">
-                                <rect key="frame" x="10" y="239" width="197" height="24"/>
+                                <rect key="frame" x="54" y="237" width="197" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xDQ-H9-of1">
-                                <rect key="frame" x="109" y="378" width="85" height="30"/>
-                                <state key="normal" title="All done!">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xDQ-H9-of1">
+                                <rect key="frame" x="153" y="376" width="80" height="22"/>
+                                <state key="normal" title="All Done!"/>
                                 <connections>
                                     <action selector="btnLogin" destination="vXZ-lx-hvc" eventType="touchUpInside" id="GBc-VA-EpQ"/>
                                 </connections>
                             </button>
                             <imageView opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon-512.png" translatesAutoresizingMaskIntoConstraints="NO" id="In4-DX-WYN">
-                                <rect key="frame" x="16" y="66" width="240" height="165"/>
+                                <rect key="frame" x="54" y="64" width="240" height="165"/>
                                 <color key="tintColor" red="0.019375423230000001" green="0.20870505589999999" blue="0.37614425509999999" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                         </subviews>
@@ -74,7 +71,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-154" y="488"/>
+            <point key="canvasLocation" x="-118" y="370"/>
         </scene>
         <!--iGordon-->
         <scene sceneID="O6m-lA-f4Q">
@@ -99,11 +96,50 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="iGordon" id="AXB-za-U7H"/>
+                    <navigationItem key="navigationItem" title="iGordon" id="AXB-za-U7H">
+                        <barButtonItem key="rightBarButtonItem" title="Options" style="done" id="Fo0-C4-lsz">
+                            <connections>
+                                <action selector="btnShowPopover:" destination="6mb-QC-Du9" id="Soe-oO-cXm"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="WMO-ZK-fOh" kind="popoverPresentation" identifier="showViewOptions" popoverAnchorBarButtonItem="Fo0-C4-lsz" id="eXM-jT-mlE">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES"/>
+                        </segue>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CN3-PL-aEu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="644" y="488"/>
+            <point key="canvasLocation" x="541" y="248"/>
+        </scene>
+        <!--Popover View Controller-->
+        <scene sceneID="2pe-gh-u1U">
+            <objects>
+                <viewController id="WMO-ZK-fOh" customClass="PopoverViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TQP-q3-FL8"/>
+                        <viewControllerLayoutGuide type="bottom" id="c9m-Ny-R7E"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Res-Mn-fem">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="taE-Zr-xSH">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="WMO-ZK-fOh" id="3H3-Pa-8C9"/>
+                                    <outlet property="delegate" destination="WMO-ZK-fOh" id="oG0-Uh-Dcb"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KI7-sP-4ed" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1286" y="304"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GrD-Cz-vtv">
@@ -121,7 +157,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bot-DP-Agv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-966" y="488"/>
+            <point key="canvasLocation" x="-816" y="1036"/>
         </scene>
     </scenes>
     <resources>

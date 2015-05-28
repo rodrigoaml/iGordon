@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MainDataViewController : UIViewController<NSURLSessionDelegate,UITableViewDelegate, UITableViewDataSource>
+@interface MainDataViewController : UIViewController<NSURLSessionDelegate,UITableViewDelegate, UITableViewDataSource,NSURLConnectionDelegate>
 
 @property (retain,nonatomic) NSDictionary* userProfile;
 
+@property (nonatomic, strong) NSMutableData *responseData;
 
-
+- (IBAction)btnShowPopover:(UIBarButtonItem *)sender;
 
 @end

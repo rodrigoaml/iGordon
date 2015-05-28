@@ -10,13 +10,11 @@
 #import "TableViewCellUserData.h"
 #import "PopoverViewController.h"
 
-@interface MainDataViewController () <UIActionSheetDelegate, UIPopoverPresentationControllerDelegate>
+@interface MainDataViewController () <UIPopoverPresentationControllerDelegate>
 
-@property (nonatomic, strong) NSURLSession *session;
-@property (nonatomic, strong) NSString *userDataDownload;
-@property (nonatomic, strong) NSMutableArray *userFetchedData;
-@property (nonatomic, strong) UIPopoverPresentationController *userOptionsPopover;
-@property (nonatomic, strong) PopoverViewController *PopoverView;
+
+@property (nonatomic, weak) UITableView *tableViewData ;
+@property (nonatomic, strong) NSIndexPath *indexPathData ;
 
 
 @end
@@ -27,55 +25,127 @@
 
 
 @synthesize userProfile = _userProfile;
-@synthesize session = _session;
-@synthesize userDataDownload = _userDataDownload ;
-@synthesize userFetchedData = _userFetchedData ;
-@synthesize userOptionsPopover = _userOptionsPopover;
+@synthesize responseData = _responseData ;
+@synthesize tableViewData = _tableViewData;
+@synthesize indexPathData  = _indexPathData;
 
 
 NSArray *studentDataOptions;
 NSArray *thumbnails;
 NSArray *endPointsServerDescription;
+NSMutableArray *endPointsServerData;
 NSArray *endPointsViewColors;
-
+NSMutableArray *rowsToBeUpdated;
+NSMutableDictionary *endPointServerDescriptionAndData;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSURLSessionConfiguration *config =
-    [NSURLSessionConfiguration defaultSessionConfiguration];
     
-    _session = [NSURLSession sessionWithConfiguration:config
-                                             delegate:self
-                                        delegateQueue:nil];
-    
-    
+
     
     // Initialize table data
     studentDataOptions = [NSArray arrayWithObjects:@"CL&W CREDITS", @"MEALPOINTS", @"MEALPOINTS LEFT/DAY", @"DAYS LEFT IN SEMESTER", @"STUDENT ID", @"TEMPERATURE", nil];
     
     endPointsServerDescription = [NSArray arrayWithObjects:@"chapelcredits", @"mealpoints", @"mealpointsperday", @"daysleftinsemester", @"studentid", @"temperature", nil];
     
-    endPointsViewColors = [NSArray arrayWithObjects:@"blueColor", @"orangeColor", @"purpleColor", @"greenColor", @"redColor", @"yellowColor", nil];
+    endPointsServerData = [NSMutableArray arrayWithObjects:@"-", @"-", @"-", @"-", @"-", @"-", nil];
     
-    thumbnails = [NSArray arrayWithObjects:@"chapel.png", @"silverware.png", @"calculator.png", @"calendar.png", @"person.png",@"thermometer", nil];
+    
+    endPointsViewColors = [NSArray arrayWithObjects:@"blueColor", @"orangeColor", @"purpleColor", @"greenColor", @"redColor", @"blueColor", nil];
+    
+    thumbnails = [NSArray arrayWithObjects:@"chapel.png", @"silverware.png", @"calculator.png", @"calendar.png", @"person.png",@"thermometer",nil];
+    
+   
+    
+    endPointServerDescriptionAndData = [NSMutableDictionary
+            dictionaryWithDictionary:@{
+                                       @"chapelcredits" : @"-",
+                                       @"mealpoints" : @"-",
+                                       @"mealpointsperday" : @"-",
+                                       @"daysleftinsemester" : @"-",
+                                       @"studentid" : @"-",
+                                       @"temperature" : @"-"
+                                       
+                                       }];
+   
+
+    //used to make the table get closer to the navigation bar
+    self.automaticallyAdjustsScrollViewInsets = NO;
+        
+}
+
+
+
+-(void)viewWillAppear:(BOOL)animated
+{
+     [self.navigationController setNavigationBarHidden:NO];
+    
+     self.navigationItem.hidesBackButton = YES;
+}
+
+
+
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
+    // A response has been received, this is where we initialize the instance var you created
+    // so that we can append data to it in the didReceiveData method
+    // Furthermore, this method is called each time there is a redirect so reinitializing it
+    // also serves to clear it
+    self.responseData = [[NSMutableData alloc] init];
+}
+
+
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
+    // Append the new data to the instance variable you declared
+    [self.responseData appendData:data];
+}
+
+- (NSCachedURLResponse *)connection:(NSURLConnection *)connection
+                  willCacheResponse:(NSCachedURLResponse*)cachedResponse {
+    // Return nil to indicate not necessary to store a cached response for this connection
+    return nil;
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    // The request is complete and data has been received
+    // You can parse the stuff in your instance variable now
+    
+    NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:self.responseData
+                                                               options:0
+                                                                 error:nil];
+    
+    //self.userDataDownload = [NSString stringWithFormat:@"%@", jsonObject[@"data"]];
+    [endPointsServerData replaceObjectAtIndex:self.indexPathData.row withObject:[NSString stringWithFormat:@"%@", jsonObject[@"data"]]];
+    
+    //check substring of the url connection
+    
+    NSIndexPath *temp;
+    
+    if([[connection description] containsString:@"chapelcredits"]){
+        temp = [endPointServerDescriptionAndData objectForKey:@"chapelcredits" ];
+        
+    }else if([[connection description] containsString:@"mealpoints"]){
+     temp = [endPointServerDescriptionAndData objectForKey:@"mealpoints" ];
+    }
+    
+    [self.tableViewData beginUpdates];
+    [self.tableViewData reloadRowsAtIndexPaths:@[self.indexPathData] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableViewData endUpdates];
+    
     
     
     
     
 }
 
--(void)viewWillAppear:(BOOL)animated
-{
-    [self.navigationController setNavigationBarHidden:NO];
-    
-     self.navigationItem.hidesBackButton = YES;
-    
-    UIBarButtonItem *optionsBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Options" style:UIBarButtonItemStylePlain target:self action:@selector(showActionSheetOptions)];
-    
-    [[self navigationItem] setRightBarButtonItem:optionsBarButton];
-    
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    // The request has failed for some reason!
+    // Check the error var
+    NSLog(@"ERROR - %@" , error);
 }
+
+
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -86,7 +156,7 @@ NSArray *endPointsViewColors;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    
+   
     
     static NSString *simpleTableIdentifier = @"tableCellDesignUserDataOptions";
     
@@ -105,8 +175,7 @@ NSArray *endPointsViewColors;
     cell.backgroundColor = [UIColor performSelector:selector];
     cell.dataDescriptionLabel.textColor = [UIColor whiteColor];
     cell.dataResultFromServerLabel.textColor = [UIColor whiteColor];
-    cell.dataResultFromServerLabel.text = self.userDataDownload == nil ? @"-" : self.userDataDownload;
-    self.userDataDownload = nil ;
+    cell.dataResultFromServerLabel.text = [endPointsServerData objectAtIndex:indexPath.row];
     
     
     return cell;
@@ -115,14 +184,10 @@ NSArray *endPointsViewColors;
 }
 
 
-
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 80;
+    return 75;
 }
-
-
 
 
 
@@ -132,20 +197,25 @@ NSArray *endPointsViewColors;
 
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    self.tableViewData = tableView;
+    self.indexPathData = indexPath;
+    
+    
+    //[endPointServerDescriptionAndData  removeObjectForKey:[endPointsServerDescription objectAtIndex:indexPath.row]];
+    [endPointServerDescriptionAndData setObject:indexPath forKey:[endPointsServerDescription objectAtIndex:indexPath.row]];
+    
+    NSLog(@"%@" , endPointServerDescriptionAndData);
+    NSLog(@"%@" , indexPath);
+    
     [self loadDataFromServer:[NSString stringWithFormat:@"%@",[endPointsServerDescription objectAtIndex:indexPath.row]]];
     
-    while (self.userDataDownload == nil) {
-       
-        
-    }
+   
     
     
-    //move line to the loadDataFromServer
-    [tableView beginUpdates];
-    [tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    [tableView endUpdates];
-
+    
+    
 }
+
 
 -(void)loadDataFromServer: (NSString *)param
 {
@@ -155,112 +225,52 @@ NSArray *endPointsViewColors;
     NSString *requestString = @"http://api.adamvig.com/gocostudent/2.2/";
     requestString  = [requestString stringByAppendingFormat:@"%@%@%@%@%@",param,@"?username=",[self.userProfile objectForKey:@"username"],@"&password=",[self.userProfile objectForKey:@"password"]];
     
+
     
-    NSURL *url = [NSURL URLWithString:requestString];
-    NSURLRequest *req = [NSURLRequest requestWithURL:url];
+    // Create the request.
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:requestString]];
     
-    NSURLSessionDataTask *dataTask =
-    [self.session dataTaskWithRequest:req
-                    completionHandler:
-     ^(NSData *data, NSURLResponse *response, NSError *error) {
-         
-         NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:data
-                                                                    options:0
-                                                                      error:nil];
-         
-         self.userDataDownload = [NSString stringWithFormat:@"%@", jsonObject[@"data"]];
-         
-         
-     }];
-    [dataTask resume];
+    
+    
+    // Create url connection and fire request
+    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
+    NSLog(@"Load DATA Connection: %@" , [conn description]);
+
+    
+}
+
+
+//configure the object to show the popover "Options"
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"showViewOptions"])
+    {
+      
+        UIViewController *destNav = (PopoverViewController *)segue.destinationViewController;
+        destNav.preferredContentSize = CGSizeMake(200, 170);
+       
         
-   
-    
-}
+        
+        UIPopoverPresentationController *popPC = destNav.popoverPresentationController;
 
-
--(void)showActionSheetOptions
-{
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Options"
-                                                             delegate:self
-                                                    cancelButtonTitle:@"Back"
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:@"Logout", @"Gordon.com", @"cs.gordon", nil];
-    
-   
-    [actionSheet showInView:self.view];
-    
-    actionSheet.actionSheetStyle = UIActionSheetStyleBlackTranslucent;
-   
-    
-}
-
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    
-    NSString *url;
-    
-    
-    
-    switch (buttonIndex) {
-        case 0:
-            NSLog(@"Not implemented yet");
-            
-            break;
-        case 1:
-            url = @"http://www.gordon.edu";
-            break;
-        case 2:
-            url = @"http://www.cs.gordon.edu";
-            break;
+        
+        popPC.sourceRect = CGRectMake(270, 15, 5, 10);
+       
+        popPC.delegate = self;
+        
+        
+        
     }
-    
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString: url]];
-    
-    
 }
 
 
-
-- (IBAction)btnSelectDatePressed:(UIBarButtonItem *)sender
-{
-    
-    
-    
-    self.PopoverView =[[PopoverViewController alloc] initWithNibName:nil bundle:nil];
-    
-    self.PopoverView.modalPresentationStyle = UIModalPresentationPopover;
-    
-    
-    // Present the view controller using the popover style.
-    
-    [self presentViewController:self.PopoverView animated: YES completion: ^{
-    }];
-    
-    // Get the popover presentation controller and configure it.
-    UIPopoverPresentationController *presentationController =
-    [self.PopoverView popoverPresentationController];
-    
-    presentationController.permittedArrowDirections =
-    UIPopoverArrowDirectionDown | UIPopoverArrowDirectionLeft;
-    
-    
-    presentationController.sourceView = self.view;
-    presentationController.barButtonItem = sender;
-    //presentationController.delegate = self ;
-    presentationController.sourceRect = CGRectMake(5, 5, 5, 5);
-    
-    
-    
-    
-}
 
 - (UIModalPresentationStyle) adaptivePresentationStyleForPresentationController: (UIPresentationController * ) controller {
-    return UIModalPresentationPopover;
+    return UIModalPresentationNone;
 }
 
 
-
-
+- (IBAction)btnShowPopover:(UIBarButtonItem *)sender {
+    [self performSegueWithIdentifier:@"showViewOptions" sender:self];
+}
 @end
