@@ -9,13 +9,14 @@
 #import "MainDataViewController.h"
 #import "TableViewCellUserData.h"
 #import "PopoverViewController.h"
+#import "EndPoint.h"
 
 @interface MainDataViewController () <UIPopoverPresentationControllerDelegate>
 
 
 @property (nonatomic, weak) UITableView *tableViewData ;
 @property (nonatomic, strong) NSIndexPath *indexPathData ;
-
+@property (nonatomic, strong) EndPoint *endPointObj ;
 
 @end
 
@@ -25,18 +26,16 @@
 
 
 @synthesize userProfile = _userProfile;
-@synthesize responseData = _responseData ;
 @synthesize tableViewData = _tableViewData;
-@synthesize indexPathData  = _indexPathData;
+@synthesize endPointsDictionary = _endPointsDictionary;
 
 
-NSArray *studentDataOptions;
-NSArray *thumbnails;
-NSArray *endPointsServerDescription;
-NSMutableArray *endPointsServerData;
-NSArray *endPointsViewColors;
-NSMutableArray *rowsToBeUpdated;
-NSMutableDictionary *endPointServerDescriptionAndData;
+- (EndPoint *)endPointObj
+{
+    if (!_endPointObj) _endPointObj = [[EndPoint alloc] init];
+    return _endPointObj;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -45,20 +44,32 @@ NSMutableDictionary *endPointServerDescriptionAndData;
 
     
     // Initialize table data
-    studentDataOptions = [NSArray arrayWithObjects:@"CL&W CREDITS", @"MEALPOINTS", @"MEALPOINTS LEFT/DAY", @"DAYS LEFT IN SEMESTER", @"STUDENT ID", @"TEMPERATURE", nil];
-    
-    endPointsServerDescription = [NSArray arrayWithObjects:@"chapelcredits", @"mealpoints", @"mealpointsperday", @"daysleftinsemester", @"studentid", @"temperature", nil];
-    
-    endPointsServerData = [NSMutableArray arrayWithObjects:@"-", @"-", @"-", @"-", @"-", @"-", nil];
     
     
-    endPointsViewColors = [NSArray arrayWithObjects:@"blueColor", @"orangeColor", @"purpleColor", @"greenColor", @"redColor", @"blueColor", nil];
-    
-    thumbnails = [NSArray arrayWithObjects:@"chapel.png", @"silverware.png", @"calculator.png", @"calendar.png", @"person.png",@"thermometer",nil];
-    
+    NSDictionary *endpointDescriptionsAndNames = [NSDictionary dictionaryWithObjectsAndKeys:
+                                                     @"CL&W CREDITS", @"chapelcredits",
+                                                     @"MEALPOINTS", @"mealpoints",
+                                                     @"MEALPOINTS LEFT/DAY", @"mealpointsperday",
+                                                     @"DAYS LEFT IN SEMESTER", @"daysleftinsemester",
+                                                     @"STUDENT ID", @"studentid",
+                                                     @"TEMPERATURE", @"temperature",nil];
    
     
-    endPointServerDescriptionAndData = [NSMutableDictionary
+    NSDictionary *endpointViewColorsAndThumbnails = [NSDictionary dictionaryWithObjectsAndKeys:
+                                                  @"blueColor", @"chapel.png",
+                                                  @"orangeColor", @"silverware.png",
+                                                  @"purpleColor", @"calculator.png",
+                                                  @"greenColor", @"calendar.png",
+                                                  @"redColor", @"person.png",
+                                                  @"blueColor", @"thermometer.png",nil];
+
+
+
+   
+    //Should initialize here the Dictionary with the Endpoint Objects.
+    
+    /*
+    self.endPointsDictionary = [NSMutableDictionary
             dictionaryWithDictionary:@{
                                        @"chapelcredits" : @"-",
                                        @"mealpoints" : @"-",
@@ -68,6 +79,7 @@ NSMutableDictionary *endPointServerDescriptionAndData;
                                        @"temperature" : @"-"
                                        
                                        }];
+    */
    
 
     //used to make the table get closer to the navigation bar
@@ -85,72 +97,23 @@ NSMutableDictionary *endPointServerDescriptionAndData;
 }
 
 
-
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response {
-    // A response has been received, this is where we initialize the instance var you created
-    // so that we can append data to it in the didReceiveData method
-    // Furthermore, this method is called each time there is a redirect so reinitializing it
-    // also serves to clear it
-    self.responseData = [[NSMutableData alloc] init];
+-(void)updateViewWithNotification:(NSNotification *)notification
+{
+    /*
+    
+     [self.tableViewData beginUpdates];
+     [self.tableViewData reloadRowsAtIndexPaths:@[temp] withRowAnimation:UITableViewRowAnimationFade];
+     [self.tableViewData endUpdates];
+    
+    
+    */
 }
-
-
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    // Append the new data to the instance variable you declared
-    [self.responseData appendData:data];
-}
-
-- (NSCachedURLResponse *)connection:(NSURLConnection *)connection
-                  willCacheResponse:(NSCachedURLResponse*)cachedResponse {
-    // Return nil to indicate not necessary to store a cached response for this connection
-    return nil;
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    // The request is complete and data has been received
-    // You can parse the stuff in your instance variable now
-    
-    NSDictionary *jsonObject = [NSJSONSerialization JSONObjectWithData:self.responseData
-                                                               options:0
-                                                                 error:nil];
-    
-    //self.userDataDownload = [NSString stringWithFormat:@"%@", jsonObject[@"data"]];
-    [endPointsServerData replaceObjectAtIndex:self.indexPathData.row withObject:[NSString stringWithFormat:@"%@", jsonObject[@"data"]]];
-    
-    //check substring of the url connection
-    
-    NSIndexPath *temp;
-    
-    if([[connection description] containsString:@"chapelcredits"]){
-        temp = [endPointServerDescriptionAndData objectForKey:@"chapelcredits" ];
-        
-    }else if([[connection description] containsString:@"mealpoints"]){
-     temp = [endPointServerDescriptionAndData objectForKey:@"mealpoints" ];
-    }
-    
-    [self.tableViewData beginUpdates];
-    [self.tableViewData reloadRowsAtIndexPaths:@[self.indexPathData] withRowAnimation:UITableViewRowAnimationFade];
-    [self.tableViewData endUpdates];
-    
-    
-    
-    
-    
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    // The request has failed for some reason!
-    // Check the error var
-    NSLog(@"ERROR - %@" , error);
-}
-
-
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [studentDataOptions count];
+    //return [studentDataOptions count];
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -166,7 +129,7 @@ NSMutableDictionary *endPointServerDescriptionAndData;
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"tableCellDesignForUserDataOptions" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    
+    /*
     cell.dataDescriptionLabel.text = [studentDataOptions objectAtIndex:indexPath.row];
     cell.thumbnailImageView.image = [UIImage imageNamed:[thumbnails objectAtIndex:indexPath.row]];
     
@@ -176,7 +139,7 @@ NSMutableDictionary *endPointServerDescriptionAndData;
     cell.dataDescriptionLabel.textColor = [UIColor whiteColor];
     cell.dataResultFromServerLabel.textColor = [UIColor whiteColor];
     cell.dataResultFromServerLabel.text = [endPointsServerData objectAtIndex:indexPath.row];
-    
+    */
     
     return cell;
 
@@ -198,46 +161,11 @@ NSMutableDictionary *endPointServerDescriptionAndData;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     self.tableViewData = tableView;
-    self.indexPathData = indexPath;
-    
-    
-    //[endPointServerDescriptionAndData  removeObjectForKey:[endPointsServerDescription objectAtIndex:indexPath.row]];
-    [endPointServerDescriptionAndData setObject:indexPath forKey:[endPointsServerDescription objectAtIndex:indexPath.row]];
-    
-    NSLog(@"%@" , endPointServerDescriptionAndData);
-    NSLog(@"%@" , indexPath);
-    
-    [self loadDataFromServer:[NSString stringWithFormat:@"%@",[endPointsServerDescription objectAtIndex:indexPath.row]]];
-    
-   
-    
-    
-    
+  
     
 }
 
 
--(void)loadDataFromServer: (NSString *)param
-{
-    
-    
-        
-    NSString *requestString = @"http://api.adamvig.com/gocostudent/2.2/";
-    requestString  = [requestString stringByAppendingFormat:@"%@%@%@%@%@",param,@"?username=",[self.userProfile objectForKey:@"username"],@"&password=",[self.userProfile objectForKey:@"password"]];
-    
-
-    
-    // Create the request.
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:requestString]];
-    
-    
-    
-    // Create url connection and fire request
-    NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    NSLog(@"Load DATA Connection: %@" , [conn description]);
-
-    
-}
 
 
 //configure the object to show the popover "Options"
