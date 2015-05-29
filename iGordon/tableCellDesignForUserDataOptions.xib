@@ -26,14 +26,18 @@
                         <fontDescription key="fontDescription" type="system" pointSize="8"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="fPI-ab-Ckf">
+                        <rect key="frame" x="217" y="31" width="20" height="20"/>
+                    </activityIndicatorView>
                 </subviews>
             </tableViewCellContentView>
             <connections>
+                <outlet property="activRequestOnServer" destination="fPI-ab-Ckf" id="Ris-qt-Z1W"/>
                 <outlet property="dataDescriptionLabel" destination="g1u-wS-9UI" id="wBK-Cr-8cH"/>
                 <outlet property="dataResultFromServerLabel" destination="VfL-Xa-ufN" id="127-1H-5tM"/>
                 <outlet property="thumbnailImageView" destination="nQW-nE-lAS" id="dBt-Vt-zjz"/>
             </connections>
-            <point key="canvasLocation" x="435.5" y="147.5"/>
+            <point key="canvasLocation" x="260.5" y="182.5"/>
         </tableViewCell>
     </objects>
 </document>

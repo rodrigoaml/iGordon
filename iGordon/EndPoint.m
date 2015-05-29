@@ -9,20 +9,6 @@
 #import "EndPoint.h"
 
 
-@interface EndPoint()
-
-@property (nonatomic, strong) NSString *name; // endpoint name = chapelcredits ; mealpoints ; etc
-
-@property (nonatomic, strong) NSString *cellDescription; // CL & W credit ; MEAL POINTS ; Student ID ;etc
-
-@property (nonatomic, strong) NSString *value;
-@property (nonatomic, strong) NSString *color;
-@property (nonatomic, strong) NSString *image;
-@property (nonatomic, strong) NSMutableData *responseData;
-
-@end
-
-
 @implementation EndPoint
 
 @synthesize name = _name;
@@ -67,9 +53,11 @@
     
     self.value = jsonObject[@"data"];
     
+    
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:@"dataRetrievedFromServer"
                                                          object:self
-                                                       userInfo:[NSDictionary dictionaryWithObjectsAndKeys:self.name, @"endPointName", nil]];
+                                                         userInfo:[NSDictionary dictionaryWithObject:self.value forKey:self.name]];
     
     
     

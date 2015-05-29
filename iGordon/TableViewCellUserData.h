@@ -14,6 +14,7 @@
 @property (nonatomic, weak) IBOutlet UILabel *dataDescriptionLabel;
 @property (nonatomic, weak) IBOutlet UILabel *dataResultFromServerLabel;
 @property (nonatomic, weak) IBOutlet UIImageView *thumbnailImageView;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activRequestOnServer;
 
 
 @end

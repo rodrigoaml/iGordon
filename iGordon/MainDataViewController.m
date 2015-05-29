@@ -15,8 +15,8 @@
 
 
 @property (nonatomic, weak) UITableView *tableViewData ;
-@property (nonatomic, strong) NSIndexPath *indexPathData ;
-@property (nonatomic, strong) EndPoint *endPointObj ;
+
+@property (nonatomic, strong) NSMutableArray *userTablePreferences;
 
 @end
 
@@ -28,60 +28,80 @@
 @synthesize userProfile = _userProfile;
 @synthesize tableViewData = _tableViewData;
 @synthesize endPointsDictionary = _endPointsDictionary;
-
-
-- (EndPoint *)endPointObj
-{
-    if (!_endPointObj) _endPointObj = [[EndPoint alloc] init];
-    return _endPointObj;
-}
+@synthesize userTablePreferences = _userTablePreferences;
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.userTablePreferences = [[NSMutableArray alloc] init];
+    [self.userTablePreferences addObjectsFromArray:@[@"chapelcredits",@"mealpoints", @"mealpointsperday", @"daysleftinsemester", @"studentid", @"temperature"]];
     
-
+    EndPoint *chapelCreditEndPoint = [[EndPoint alloc]init];
     
-    // Initialize table data
+    chapelCreditEndPoint.name = @"chapelcredits";
+    chapelCreditEndPoint.cellDescription = @"CL&W credits" ;
+    chapelCreditEndPoint.color = @"blueColor" ;
+    chapelCreditEndPoint.image= @"chapel.png" ;
     
+    EndPoint *mealPointsEndPoint = [[EndPoint alloc]init];
     
-    NSDictionary *endpointDescriptionsAndNames = [NSDictionary dictionaryWithObjectsAndKeys:
-                                                     @"CL&W CREDITS", @"chapelcredits",
-                                                     @"MEALPOINTS", @"mealpoints",
-                                                     @"MEALPOINTS LEFT/DAY", @"mealpointsperday",
-                                                     @"DAYS LEFT IN SEMESTER", @"daysleftinsemester",
-                                                     @"STUDENT ID", @"studentid",
-                                                     @"TEMPERATURE", @"temperature",nil];
-   
+    mealPointsEndPoint.name = @"mealpoints";
+    mealPointsEndPoint.cellDescription = @"MEALPOINTS" ;
+    mealPointsEndPoint.color = @"orangeColor" ;
+    mealPointsEndPoint.image= @"silverware.png" ;
     
-    NSDictionary *endpointViewColorsAndThumbnails = [NSDictionary dictionaryWithObjectsAndKeys:
-                                                  @"blueColor", @"chapel.png",
-                                                  @"orangeColor", @"silverware.png",
-                                                  @"purpleColor", @"calculator.png",
-                                                  @"greenColor", @"calendar.png",
-                                                  @"redColor", @"person.png",
-                                                  @"blueColor", @"thermometer.png",nil];
-
-
-
-   
-    //Should initialize here the Dictionary with the Endpoint Objects.
+    EndPoint *mealPointsPerDayEndPoint = [[EndPoint alloc]init];
     
-    /*
+    mealPointsPerDayEndPoint.name = @"mealpointsperday";
+    mealPointsPerDayEndPoint.cellDescription = @"MEALPOINTS LEFT/DAY" ;
+    mealPointsPerDayEndPoint.color = @"purpleColor" ;
+    mealPointsPerDayEndPoint.image= @"calculator.png" ;
+    
+    EndPoint *daysleftInSemesterEndPoint = [[EndPoint alloc]init];
+    
+    daysleftInSemesterEndPoint.name = @"daysleftinsemester";
+    daysleftInSemesterEndPoint.cellDescription = @"DAYS LEFT IN SEMESTER" ;
+    daysleftInSemesterEndPoint.color = @"greenColor" ;
+    daysleftInSemesterEndPoint.image= @"calendar.png" ;
+    
+    EndPoint *studentIdEndPoint = [[EndPoint alloc]init];
+    
+    studentIdEndPoint.name = @"studentid";
+    studentIdEndPoint.cellDescription = @"STUDENT ID" ;
+    studentIdEndPoint.color = @"redColor" ;
+    studentIdEndPoint.image= @"person.png" ;
+    
+    EndPoint *temperatureEndPoint = [[EndPoint alloc]init];
+    
+    temperatureEndPoint.name = @"temperature";
+    temperatureEndPoint.cellDescription = @"TEMPERATURE" ;
+    temperatureEndPoint.color = @"blueColor" ;
+    temperatureEndPoint.image= @"thermometer.png" ;
+    
     self.endPointsDictionary = [NSMutableDictionary
             dictionaryWithDictionary:@{
-                                       @"chapelcredits" : @"-",
-                                       @"mealpoints" : @"-",
-                                       @"mealpointsperday" : @"-",
-                                       @"daysleftinsemester" : @"-",
-                                       @"studentid" : @"-",
-                                       @"temperature" : @"-"
+                                       
+                                       
+                                       @"chapelcredits" : chapelCreditEndPoint,
+                                       @"mealpoints" : mealPointsEndPoint,
+                                       @"mealpointsperday" : mealPointsPerDayEndPoint,
+                                       @"daysleftinsemester" : daysleftInSemesterEndPoint,
+                                       @"studentid" : studentIdEndPoint,
+                                       @"temperature" : temperatureEndPoint
                                        
                                        }];
-    */
+    
    
-
+    
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateViewWithNotification:)
+                                                 name:@"dataRetrievedFromServer"
+                                               object:nil];
+    
+    
     //used to make the table get closer to the navigation bar
     self.automaticallyAdjustsScrollViewInsets = NO;
         
@@ -99,27 +119,27 @@
 
 -(void)updateViewWithNotification:(NSNotification *)notification
 {
-    /*
+    
+
     
      [self.tableViewData beginUpdates];
-     [self.tableViewData reloadRowsAtIndexPaths:@[temp] withRowAnimation:UITableViewRowAnimationFade];
+     [self.tableViewData reloadData];
      [self.tableViewData endUpdates];
     
     
-    */
+    
 }
+
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //return [studentDataOptions count];
-    return 0;
+    return [self.endPointsDictionary count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-   
     
     static NSString *simpleTableIdentifier = @"tableCellDesignUserDataOptions";
     
@@ -129,18 +149,21 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"tableCellDesignForUserDataOptions" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
-    /*
-    cell.dataDescriptionLabel.text = [studentDataOptions objectAtIndex:indexPath.row];
-    cell.thumbnailImageView.image = [UIImage imageNamed:[thumbnails objectAtIndex:indexPath.row]];
     
-    SEL selector = NSSelectorFromString([endPointsViewColors objectAtIndex:indexPath.row]);
+    EndPoint  *tempEndPoint =  [self.endPointsDictionary objectForKey:[self.userTablePreferences objectAtIndex:indexPath.row]];
+ 
+    cell.activRequestOnServer.hidden = YES ;
+    cell.dataDescriptionLabel.text = tempEndPoint.cellDescription;
+    cell.thumbnailImageView.image = [UIImage imageNamed:tempEndPoint.image];
+    
+    SEL selector = NSSelectorFromString(tempEndPoint.color);
     cell.thumbnailImageView.backgroundColor = [UIColor  performSelector:selector];
     cell.backgroundColor = [UIColor performSelector:selector];
     cell.dataDescriptionLabel.textColor = [UIColor whiteColor];
     cell.dataResultFromServerLabel.textColor = [UIColor whiteColor];
-    cell.dataResultFromServerLabel.text = [endPointsServerData objectAtIndex:indexPath.row];
-    */
+    cell.dataResultFromServerLabel.text = [NSString stringWithFormat:@"%@",tempEndPoint.value == nil ? @"-" : tempEndPoint.value];
     
+
     return cell;
 
 
@@ -161,7 +184,18 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     self.tableViewData = tableView;
-  
+    
+    [[self.endPointsDictionary objectForKey:[self.userTablePreferences objectAtIndex:indexPath.row]] loadDataFromServer:self.userProfile];
+    
+    
+    TableViewCellUserData *cell = (TableViewCellUserData *)[tableView cellForRowAtIndexPath:indexPath];
+    if (cell == nil)
+    {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"tableCellDesignForUserDataOptions" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+    }
+    cell.activRequestOnServer.hidden = NO ;
+    [cell.activRequestOnServer startAnimating];
     
 }
 
