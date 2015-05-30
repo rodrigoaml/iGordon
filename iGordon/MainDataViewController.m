@@ -120,10 +120,21 @@
 -(void)updateViewWithNotification:(NSNotification *)notification
 {
     
+     NSArray *keyUserInfo = [[notification userInfo] allKeys];
+
+     NSIndexPath* indexPath1 = [NSIndexPath indexPathForRow:(long)[self.userTablePreferences indexOfObject:[keyUserInfo objectAtIndex:0]]inSection:0];
 
     
+     NSArray* indexArray = [NSArray arrayWithObjects:indexPath1, nil];
+    
+    
+    
+    
+    
      [self.tableViewData beginUpdates];
-     [self.tableViewData reloadData];
+    
+     [self.tableViewData reloadRowsAtIndexPaths:indexArray withRowAnimation:UITableViewRowAnimationFade];
+    
      [self.tableViewData endUpdates];
     
     
