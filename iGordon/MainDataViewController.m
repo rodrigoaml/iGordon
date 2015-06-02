@@ -34,6 +34,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+ 
+    
+    
+    
     self.userTablePreferences = [[NSMutableArray alloc] init];
     [self.userTablePreferences addObjectsFromArray:@[@"chapelcredits",@"mealpoints", @"mealpointsperday", @"daysleftinsemester", @"studentid", @"temperature"]];
     
@@ -111,10 +115,12 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-     [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setNavigationBarHidden:NO];
     
      self.navigationItem.hidesBackButton = YES;
+    
 }
+
 
 
 -(void)updateViewWithNotification:(NSNotification *)notification
@@ -127,9 +133,7 @@
     
      NSArray* indexArray = [NSArray arrayWithObjects:indexPath1, nil];
     
-    
-    
-    
+
     
      [self.tableViewData beginUpdates];
     
@@ -145,16 +149,18 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.endPointsDictionary count];
+    //return [self.endPointsDictionary count];
+    return [self.userTablePreferences count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    
+    self.tableViewData = tableView;
     static NSString *simpleTableIdentifier = @"tableCellDesignUserDataOptions";
     
     TableViewCellUserData *cell = (TableViewCellUserData *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    
     if (cell == nil)
     {
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"tableCellDesignForUserDataOptions" owner:self options:nil];
@@ -173,12 +179,13 @@
     cell.dataDescriptionLabel.textColor = [UIColor whiteColor];
     cell.dataResultFromServerLabel.textColor = [UIColor whiteColor];
     cell.dataResultFromServerLabel.text = [NSString stringWithFormat:@"%@",tempEndPoint.value == nil ? @"-" : tempEndPoint.value];
+        
     
-
     return cell;
 
 
 }
+
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -192,6 +199,7 @@
 
 {
 
+    //[tableView setEditing:YES animated:YES];
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     self.tableViewData = tableView;
@@ -205,10 +213,42 @@
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"tableCellDesignForUserDataOptions" owner:self options:nil];
         cell = [nib objectAtIndex:0];
     }
+    
     cell.activRequestOnServer.hidden = NO ;
     [cell.activRequestOnServer startAnimating];
     
 }
+
+
+
+- (void)   tableView:(UITableView *)tableView
+  commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+   forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // If the table view is asking to commit a delete command...
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        
+        [self.userTablePreferences removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath]
+                         withRowAnimation:UITableViewRowAnimationFade];
+    }
+}
+
+- (void)   tableView:(UITableView *)tableView
+  moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
+         toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+   
+    
+    
+    id object = [self.userTablePreferences objectAtIndex:sourceIndexPath.row] ;
+    [self.userTablePreferences removeObjectAtIndex:sourceIndexPath.row];
+    [self.userTablePreferences insertObject:object atIndex:destinationIndexPath.row];
+    
+}
+
+
+
 
 
 
@@ -245,5 +285,23 @@
 
 - (IBAction)btnShowPopover:(UIBarButtonItem *)sender {
     [self performSegueWithIdentifier:@"showViewOptions" sender:self];
+    
 }
+
+- (IBAction)testPress:(UIBarButtonItem *)sender {
+    
+    if ([self.tableViewData isEditing]) {
+        
+         [self.tableViewData setEditing:NO animated:YES];
+         [self.navigationItem.leftBarButtonItem setTitle:@"Edit"];
+        
+    }else{
+        [self.tableViewData setEditing:YES animated:YES];
+        [self.navigationItem.leftBarButtonItem setTitle:@"Done"];
+    }
+    
+}
+
+
+
 @end

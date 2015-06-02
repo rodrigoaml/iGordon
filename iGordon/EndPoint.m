@@ -84,7 +84,7 @@
     
     // Create url connection and fire request
     NSURLConnection *conn = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-    NSLog(@"Load DATA Connection: %@" , [conn description]);
+    NSLog(@"Connection: %@" , [conn description]);
     
 }
 

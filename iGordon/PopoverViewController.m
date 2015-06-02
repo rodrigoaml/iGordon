@@ -32,7 +32,7 @@ NSArray *itemMenuOptions;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    itemMenuOptions = [NSArray arrayWithObjects:@"Gordon.edu", @"Computer Science", @"Options", @"Logout", nil];
+    itemMenuOptions = [NSArray arrayWithObjects:@"Gordon.edu", @"Computer Science", @"More", @"Logout", nil];
     
 }
 
@@ -86,7 +86,7 @@ NSArray *itemMenuOptions;
             NSLog(@"NOT IMPLEMENTED YET");
             break;
         case 3:
-            NSLog(@"NOT IMPLEMENTED YET");
+            [self performSegueWithIdentifier:@"logoutFromPopover" sender:self];
             break;
     }
     

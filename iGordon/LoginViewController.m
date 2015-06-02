@@ -56,11 +56,11 @@
 
 - (IBAction)btnLogin {
   
-    dispatch_async(dispatch_get_main_queue(), ^{
+    
         
-        [self.lblEnterYourUserPass performSelectorOnMainThread : @selector(setText:) withObject:@"" waitUntilDone:NO];
+   [self.lblEnterYourUserPass performSelectorOnMainThread : @selector(setText:) withObject:@"" waitUntilDone:NO];
         
-    });
+   
     
     
     
@@ -141,7 +141,7 @@
     
 }
 
-
+//enables to switch to another txt field without the keyboard over it
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     for (UIView * txt in self.view.subviews){
         if ([txt isKindOfClass:[UITextField class]] && [txt isFirstResponder]) {
@@ -168,6 +168,26 @@
     
 }
 
+
+- (IBAction)logoutFromPopover:(UIStoryboardSegue *)segue {
+    
+    [self.lblEnterYourUserPass performSelectorOnMainThread : @selector(setTextColor:) withObject:[UIColor whiteColor] waitUntilDone:NO];
+    [self.lblUsername performSelectorOnMainThread : @selector(setTextColor:) withObject:[UIColor whiteColor] waitUntilDone:NO];
+    [self.lblPassword performSelectorOnMainThread : @selector(setTextColor:) withObject:[UIColor whiteColor] waitUntilDone:NO];
+    [self.lblEnterYourUserPass performSelectorOnMainThread : @selector(setText:) withObject:@"Enter your credentials for Go Gordon" waitUntilDone:NO];
+    [self.lblUsername performSelectorOnMainThread : @selector(setText:) withObject:@"Username" waitUntilDone:NO];
+    [self.lblPassword performSelectorOnMainThread : @selector(setText:) withObject:@"Password" waitUntilDone:NO];
+    
+    [self.txtUserName performSelectorOnMainThread : @selector(setText:) withObject:@"" waitUntilDone:NO];
+    [self.txtUserPassword performSelectorOnMainThread : @selector(setText:) withObject:@"" waitUntilDone:NO];
+    
+    if (![segue.sourceViewController isBeingDismissed]) {
+        [segue.sourceViewController dismissViewControllerAnimated:YES completion:nil];
+    }
+    
+    
+    
+}
 
 
 
