@@ -10,6 +10,7 @@
 #import "TableViewCellUserData.h"
 #import "PopoverViewController.h"
 #import "EndPoint.h"
+#import "UserPreferencesViewController.h"
 
 @interface MainDataViewController () <UIPopoverPresentationControllerDelegate>
 
@@ -39,7 +40,12 @@
     
     
     self.userTablePreferences = [[NSMutableArray alloc] init];
-    [self.userTablePreferences addObjectsFromArray:@[@"chapelcredits",@"mealpoints", @"mealpointsperday", @"daysleftinsemester", @"studentid", @"temperature"]];
+    [self.userTablePreferences addObjectsFromArray:@[@"chapelcredits",
+                                                        @"mealpoints",
+                                                        @"mealpointsperday",
+                                                        @"daysleftinsemester",
+                                                        @"studentid",
+                                                        @"temperature"]];
     
     EndPoint *chapelCreditEndPoint = [[EndPoint alloc]init];
     
@@ -87,12 +93,12 @@
             dictionaryWithDictionary:@{
                                        
                                        
-                                       @"chapelcredits" : chapelCreditEndPoint,
-                                       @"mealpoints" : mealPointsEndPoint,
-                                       @"mealpointsperday" : mealPointsPerDayEndPoint,
-                                       @"daysleftinsemester" : daysleftInSemesterEndPoint,
-                                       @"studentid" : studentIdEndPoint,
-                                       @"temperature" : temperatureEndPoint
+                                       [NSString stringWithFormat:@"%@",chapelCreditEndPoint.name ]: chapelCreditEndPoint,
+                                       [NSString stringWithFormat:@"%@",mealPointsEndPoint.name] : mealPointsEndPoint,
+                                       [NSString stringWithFormat:@"%@",mealPointsPerDayEndPoint.name] : mealPointsPerDayEndPoint,
+                                      [NSString stringWithFormat:@"%@", daysleftInSemesterEndPoint.name] : daysleftInSemesterEndPoint,
+                                      [NSString stringWithFormat:@"%@", studentIdEndPoint.name ]: studentIdEndPoint,
+                                      [NSString stringWithFormat:@"%@", temperatureEndPoint.name ]: temperatureEndPoint
                                        
                                        }];
     
@@ -105,6 +111,12 @@
                                                  name:@"dataRetrievedFromServer"
                                                object:nil];
     
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateTableAfterUpdateAtUserPreferences:)
+                                                 name:@"userPreferencesUpdated"
+                                               object:nil];
     
     //used to make the table get closer to the navigation bar
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -145,11 +157,79 @@
     
 }
 
+-(void)activatesReorderingFromPopoverNotification{
+    
+    [self.tableViewData setEditing:YES animated:YES];
+    
+}
+
+
+-(void)updateTableAfterUpdateAtUserPreferences:(NSNotification *)notification{
+    
+   
+    NSMutableArray *tempUserPreferencesChanges = [[notification userInfo] objectForKey:@"userPreferences"];
+    
+    NSMutableArray *copyOfUserTablePreferences = [self.userTablePreferences mutableCopy];
+    
+    
+    
+    
+    if([tempUserPreferencesChanges count] > [copyOfUserTablePreferences count]){
+        
+        for(NSObject *obj in tempUserPreferencesChanges){
+            NSIndexPath* indexPath = [NSIndexPath indexPathForRow:(long)[tempUserPreferencesChanges indexOfObject:obj]inSection:0];
+            
+            if(![copyOfUserTablePreferences containsObject:obj]) {
+                [self.userTablePreferences insertObject:obj atIndex:indexPath.row];
+                [self.tableViewData insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+            }
+        }
+        
+    
+    }else if([tempUserPreferencesChanges count] < [copyOfUserTablePreferences count]){
+        
+        for( NSObject *obj in copyOfUserTablePreferences ){
+            
+            
+            NSIndexPath* indexPath = [NSIndexPath indexPathForRow:(long)[self.userTablePreferences indexOfObject:obj]inSection:0];
+            if(![tempUserPreferencesChanges containsObject:obj]){
+
+                [self.userTablePreferences removeObjectAtIndex:indexPath.row];
+                [self.tableViewData deleteRowsAtIndexPaths:@[indexPath]
+                                          withRowAnimation:UITableViewRowAnimationFade];
+   
+            }
+        }
+    
+    }
+    
+
+}
+
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return UITableViewCellEditingStyleNone;
+}
+
+- (BOOL)tableView:(UITableView *)tableview shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath {
+    return NO;
+}
+
+
+- (BOOL)tableView:(UITableView *)tableview canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+
+
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //return [self.endPointsDictionary count];
     return [self.userTablePreferences count];
 }
 
@@ -199,7 +279,7 @@
 
 {
 
-    //[tableView setEditing:YES animated:YES];
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     self.tableViewData = tableView;
@@ -239,8 +319,6 @@
          toIndexPath:(NSIndexPath *)destinationIndexPath
 {
    
-    
-    
     id object = [self.userTablePreferences objectAtIndex:sourceIndexPath.row] ;
     [self.userTablePreferences removeObjectAtIndex:sourceIndexPath.row];
     [self.userTablePreferences insertObject:object atIndex:destinationIndexPath.row];
@@ -253,7 +331,7 @@
 
 
 
-//configure the object to show the popover "Options"
+//configure the object to show the popover "Options or Add"
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if([segue.identifier isEqualToString:@"showViewOptions"])
@@ -273,7 +351,27 @@
         
         
         
+    }else if([segue.identifier isEqualToString:@"showAddOptions"])
+    {
+        
+        UserPreferencesViewController *destNav = (UserPreferencesViewController *)segue.destinationViewController;
+        destNav.preferredContentSize = CGSizeMake(270, 300);
+        destNav.userSelectedOptions = [self.userTablePreferences mutableCopy] ;
+        
+        
+        UIPopoverPresentationController *popPC = destNav.popoverPresentationController;
+        
+        
+        popPC.sourceRect = CGRectMake(270, 15, 5, 10);
+        
+        popPC.delegate = self;
+        
+        
+        
     }
+   
+    
+    
 }
 
 
@@ -290,17 +388,21 @@
 
 - (IBAction)testPress:(UIBarButtonItem *)sender {
     
-    if ([self.tableViewData isEditing]) {
-        
-         [self.tableViewData setEditing:NO animated:YES];
-         [self.navigationItem.leftBarButtonItem setTitle:@"Edit"];
-        
-    }else{
-        [self.tableViewData setEditing:YES animated:YES];
-        [self.navigationItem.leftBarButtonItem setTitle:@"Done"];
+    [self performSegueWithIdentifier:@"showAddOptions" sender:self];
+}
+
+
+- (IBAction)dismissFromAddPopover:(UIStoryboardSegue *)segue {
+    
+    if (![segue.sourceViewController isBeingDismissed]) {
+        [segue.sourceViewController dismissViewControllerAnimated:YES completion:nil];
     }
     
+    
+    
 }
+
+
 
 
 

@@ -10,13 +10,13 @@
 
 @interface MainDataViewController : UIViewController<UITableViewDelegate, UITableViewDataSource,NSURLConnectionDelegate>
 
-@property (retain,nonatomic) NSDictionary* userProfile;
-@property (nonatomic, strong) NSMutableDictionary *endPointsDictionary;
+  @property (retain,nonatomic) NSDictionary* userProfile;
+  
+  @property (nonatomic, strong) NSMutableDictionary *endPointsDictionary;
 
 - (IBAction)btnShowPopover:(UIBarButtonItem *)sender;
 
-
-- (IBAction)testPress:(UIBarButtonItem *)sender;
+  - (IBAction)testPress:(UIBarButtonItem *)sender;
 
 
 @end

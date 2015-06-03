@@ -112,11 +112,14 @@
                         <segue destination="WMO-ZK-fOh" kind="popoverPresentation" identifier="showViewOptions" popoverAnchorBarButtonItem="Fo0-C4-lsz" id="eXM-jT-mlE">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES"/>
                         </segue>
+                        <segue destination="tOm-u9-t3D" kind="popoverPresentation" identifier="showAddOptions" popoverAnchorBarButtonItem="JmE-W8-DMW" id="y0Q-s0-rqG">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES"/>
+                        </segue>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CN3-PL-aEu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="229" y="985"/>
+            <point key="canvasLocation" x="54" y="1064"/>
         </scene>
         <!--Popover View Controller-->
         <scene sceneID="2pe-gh-u1U">
@@ -148,7 +151,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KI7-sP-4ed" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="dxz-nm-bT6" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="229" y="1796"/>
+            <point key="canvasLocation" x="-141" y="1906"/>
+        </scene>
+        <!--User Preferences View Controller-->
+        <scene sceneID="4FN-ic-iF4">
+            <objects>
+                <viewController id="tOm-u9-t3D" customClass="UserPreferencesViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rbB-iv-Wh8"/>
+                        <viewControllerLayoutGuide type="bottom" id="ggw-ld-04y"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="wOG-Ue-G6s">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Bis-Ic-oB9">
+                                <rect key="frame" x="0.0" y="0.0" width="270" height="441"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="tOm-u9-t3D" id="KCr-cW-my9"/>
+                                    <outlet property="delegate" destination="tOm-u9-t3D" id="f4S-xO-VzE"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="17s-oA-8ff" kind="unwind" identifier="dismissFromAddPopover" unwindAction="dismissFromAddPopover:" id="Rqu-79-2fW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m4q-79-uZd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="17s-oA-8ff" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="859" y="952"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GrD-Cz-vtv">

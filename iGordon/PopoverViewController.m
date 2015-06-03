@@ -8,6 +8,7 @@
 
 #import "PopoverViewController.h"
 #import "LoginViewController.h"
+#import "UserPreferencesViewController.h"
 
 @interface PopoverViewController ()
 
@@ -66,6 +67,7 @@ NSArray *itemMenuOptions;
     // Configure the cell...
     cell.textLabel.text = [itemMenuOptions objectAtIndex:indexPath.row];
     
+    
     return cell;
 }
 
@@ -73,6 +75,8 @@ NSArray *itemMenuOptions;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 
 {
+    
+
     NSString *url;
     
     switch (indexPath.row) {
