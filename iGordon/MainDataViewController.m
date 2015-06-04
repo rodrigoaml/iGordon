@@ -173,35 +173,35 @@
     
     
     
-    
-    if([tempUserPreferencesChanges count] > [copyOfUserTablePreferences count]){
+    for(NSObject *obj in tempUserPreferencesChanges){
         
-        for(NSObject *obj in tempUserPreferencesChanges){
+        
+        
+        if(![copyOfUserTablePreferences containsObject:obj]) {
             NSIndexPath* indexPath = [NSIndexPath indexPathForRow:(long)[tempUserPreferencesChanges indexOfObject:obj]inSection:0];
             
-            if(![copyOfUserTablePreferences containsObject:obj]) {
-                [self.userTablePreferences insertObject:obj atIndex:indexPath.row];
-                [self.tableViewData insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-            }
+            [self.userTablePreferences insertObject:obj atIndex:indexPath.row];
+            [self.tableViewData insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
         }
-        
+    }
     
-    }else if([tempUserPreferencesChanges count] < [copyOfUserTablePreferences count]){
+    
+    for(NSObject *obj in copyOfUserTablePreferences){
         
-        for( NSObject *obj in copyOfUserTablePreferences ){
-            
+        
+        
+        if(![tempUserPreferencesChanges containsObject:obj]){
             
             NSIndexPath* indexPath = [NSIndexPath indexPathForRow:(long)[self.userTablePreferences indexOfObject:obj]inSection:0];
-            if(![tempUserPreferencesChanges containsObject:obj]){
-
-                [self.userTablePreferences removeObjectAtIndex:indexPath.row];
-                [self.tableViewData deleteRowsAtIndexPaths:@[indexPath]
-                                          withRowAnimation:UITableViewRowAnimationFade];
-   
-            }
+            
+            
+            [self.userTablePreferences removeObjectAtIndex:indexPath.row];
+            [self.tableViewData deleteRowsAtIndexPaths:@[indexPath]
+                                      withRowAnimation:UITableViewRowAnimationFade];
+            
         }
-    
     }
+    
     
 
 }
@@ -300,7 +300,6 @@
 }
 
 
-
 - (void)   tableView:(UITableView *)tableView
   commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
    forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -324,10 +323,6 @@
     [self.userTablePreferences insertObject:object atIndex:destinationIndexPath.row];
     
 }
-
-
-
-
 
 
 
@@ -401,8 +396,6 @@
     
     
 }
-
-
 
 
 
