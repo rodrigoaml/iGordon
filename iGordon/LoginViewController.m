@@ -43,12 +43,6 @@
 }
 
 
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 -(void)viewWillAppear:(BOOL)animated
 {
     [self.navigationController setNavigationBarHidden:YES];
@@ -60,9 +54,7 @@
         
    [self.lblEnterYourUserPass performSelectorOnMainThread : @selector(setText:) withObject:@"" waitUntilDone:NO];
         
-   
-    
-    
+
     
     NSData *nsdata = [self.txtUserPassword.text
                       dataUsingEncoding:NSUTF8StringEncoding];

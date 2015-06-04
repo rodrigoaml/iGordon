@@ -11,7 +11,7 @@
 		A356C02D1B18AC00005B9DFB /* EndPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = A356C02C1B18AC00005B9DFB /* EndPoint.m */; };
 		A356C0301B1E449F005B9DFB /* UserPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A356C02F1B1E449F005B9DFB /* UserPreferencesViewController.m */; };
 		A35CF0DD1B0C01AB00356086 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A35CF0DC1B0C01AB00356086 /* main.m */; };
-		A35CF0E01B0C01AB00356086 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A35CF0DF1B0C01AB00356086 /* AppDelegate.m */; };
+		A35CF0E01B0C01AB00356086 /* iGordonAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A35CF0DF1B0C01AB00356086 /* iGordonAppDelegate.m */; };
 		A35CF0E31B0C01AB00356086 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A35CF0E21B0C01AB00356086 /* LoginViewController.m */; };
 		A35CF0E61B0C01AB00356086 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A35CF0E41B0C01AB00356086 /* Main.storyboard */; };
 		A35CF0E81B0C01AB00356086 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A35CF0E71B0C01AB00356086 /* Images.xcassets */; };
@@ -51,8 +51,8 @@
 		A35CF0D71B0C01AB00356086 /* iGordon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iGordon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A35CF0DB1B0C01AB00356086 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A35CF0DC1B0C01AB00356086 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		A35CF0DE1B0C01AB00356086 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		A35CF0DF1B0C01AB00356086 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A35CF0DE1B0C01AB00356086 /* iGordonAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = iGordonAppDelegate.h; sourceTree = "<group>"; };
+		A35CF0DF1B0C01AB00356086 /* iGordonAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = iGordonAppDelegate.m; sourceTree = "<group>"; };
 		A35CF0E11B0C01AB00356086 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		A35CF0E21B0C01AB00356086 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		A35CF0E51B0C01AB00356086 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -95,6 +95,81 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A356C0331B20D141005B9DFB /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				A35CF1081B0D5D0000356086 /* Default~iphone.png */,
+				A35CF11E1B0EA75800356086 /* calendar.png */,
+				A35CF11F1B0EA75800356086 /* chapel.png */,
+				A35CF1201B0EA75800356086 /* logo.png */,
+				A35CF1211B0EA75800356086 /* person.png */,
+				A35CF1221B0EA75800356086 /* silverware.png */,
+				A35CF1231B0EA75800356086 /* thermometer.png */,
+				A35CF11C1B0EA62100356086 /* calculator.png */,
+				A35CF1061B0D35CD00356086 /* icon-512.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
+		A356C0341B20D241005B9DFB /* Application Support */ = {
+			isa = PBXGroup;
+			children = (
+				A35CF0DE1B0C01AB00356086 /* iGordonAppDelegate.h */,
+				A35CF0DF1B0C01AB00356086 /* iGordonAppDelegate.m */,
+			);
+			name = "Application Support";
+			sourceTree = "<group>";
+		};
+		A356C0351B20D2A4005B9DFB /* TableView Representations */ = {
+			isa = PBXGroup;
+			children = (
+				A356C0381B20D317005B9DFB /* Data Sources */,
+				A356C0371B20D303005B9DFB /* User Interface Elements */,
+				A356C0361B20D2D0005B9DFB /* View Controllers */,
+			);
+			name = "TableView Representations";
+			sourceTree = "<group>";
+		};
+		A356C0361B20D2D0005B9DFB /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				A35CF1001B0C01E500356086 /* MainDataViewController.h */,
+				A35CF1011B0C01E500356086 /* MainDataViewController.m */,
+				A35CF0E11B0C01AB00356086 /* LoginViewController.h */,
+				A35CF0E21B0C01AB00356086 /* LoginViewController.m */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		A356C0371B20D303005B9DFB /* User Interface Elements */ = {
+			isa = PBXGroup;
+			children = (
+				A35CF1311B118A9500356086 /* TableViewCellUserData.h */,
+				A35CF1321B118A9500356086 /* TableViewCellUserData.m */,
+			);
+			name = "User Interface Elements";
+			sourceTree = "<group>";
+		};
+		A356C0381B20D317005B9DFB /* Data Sources */ = {
+			isa = PBXGroup;
+			children = (
+				A34DABD91B14FEA600A19DE8 /* PopoverViewController.h */,
+				A34DABDA1B14FEA600A19DE8 /* PopoverViewController.m */,
+				A356C02E1B1E449F005B9DFB /* UserPreferencesViewController.h */,
+				A356C02F1B1E449F005B9DFB /* UserPreferencesViewController.m */,
+			);
+			name = "Data Sources";
+			sourceTree = "<group>";
+		};
+		A356C03A1B20D3FC005B9DFB /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				A356C02B1B18AC00005B9DFB /* EndPoint.h */,
+				A356C02C1B18AC00005B9DFB /* EndPoint.m */,
+			);
+			name = DataModel;
+			sourceTree = "<group>";
+		};
 		A35CF0CE1B0C01AA00356086 = {
 			isa = PBXGroup;
 			children = (
@@ -116,20 +191,9 @@
 		A35CF0D91B0C01AB00356086 /* iGordon */ = {
 			isa = PBXGroup;
 			children = (
-				A356C02B1B18AC00005B9DFB /* EndPoint.h */,
-				A356C02C1B18AC00005B9DFB /* EndPoint.m */,
-				A35CF1311B118A9500356086 /* TableViewCellUserData.h */,
-				A35CF1321B118A9500356086 /* TableViewCellUserData.m */,
-				A35CF0DE1B0C01AB00356086 /* AppDelegate.h */,
-				A35CF0DF1B0C01AB00356086 /* AppDelegate.m */,
-				A35CF0E11B0C01AB00356086 /* LoginViewController.h */,
-				A35CF0E21B0C01AB00356086 /* LoginViewController.m */,
-				A35CF1001B0C01E500356086 /* MainDataViewController.h */,
-				A35CF1011B0C01E500356086 /* MainDataViewController.m */,
-				A34DABD91B14FEA600A19DE8 /* PopoverViewController.h */,
-				A34DABDA1B14FEA600A19DE8 /* PopoverViewController.m */,
-				A356C02E1B1E449F005B9DFB /* UserPreferencesViewController.h */,
-				A356C02F1B1E449F005B9DFB /* UserPreferencesViewController.m */,
+				A356C03A1B20D3FC005B9DFB /* DataModel */,
+				A356C0351B20D2A4005B9DFB /* TableView Representations */,
+				A356C0341B20D241005B9DFB /* Application Support */,
 				A35CF12C1B1187BD00356086 /* tableCellDesignForUserDataOptions.xib */,
 				A35CF0E41B0C01AB00356086 /* Main.storyboard */,
 				A35CF0E71B0C01AB00356086 /* Images.xcassets */,
@@ -142,15 +206,7 @@
 		A35CF0DA1B0C01AB00356086 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				A35CF1081B0D5D0000356086 /* Default~iphone.png */,
-				A35CF11E1B0EA75800356086 /* calendar.png */,
-				A35CF11F1B0EA75800356086 /* chapel.png */,
-				A35CF1201B0EA75800356086 /* logo.png */,
-				A35CF1211B0EA75800356086 /* person.png */,
-				A35CF1221B0EA75800356086 /* silverware.png */,
-				A35CF1231B0EA75800356086 /* thermometer.png */,
-				A35CF11C1B0EA62100356086 /* calculator.png */,
-				A35CF1061B0D35CD00356086 /* icon-512.png */,
+				A356C0331B20D141005B9DFB /* Images */,
 				A35CF0DB1B0C01AB00356086 /* Info.plist */,
 				A35CF0DC1B0C01AB00356086 /* main.m */,
 			);
@@ -288,7 +344,7 @@
 				A34DABDB1B14FEA600A19DE8 /* PopoverViewController.m in Sources */,
 				A35CF0E31B0C01AB00356086 /* LoginViewController.m in Sources */,
 				A356C0301B1E449F005B9DFB /* UserPreferencesViewController.m in Sources */,
-				A35CF0E01B0C01AB00356086 /* AppDelegate.m in Sources */,
+				A35CF0E01B0C01AB00356086 /* iGordonAppDelegate.m in Sources */,
 				A356C02D1B18AC00005B9DFB /* EndPoint.m in Sources */,
 				A35CF1021B0C01E500356086 /* MainDataViewController.m in Sources */,
 				A35CF1331B118A9500356086 /* TableViewCellUserData.m in Sources */,

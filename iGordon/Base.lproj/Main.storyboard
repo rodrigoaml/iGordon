@@ -99,12 +99,12 @@
                     <navigationItem key="navigationItem" title="iGordon" id="AXB-za-U7H">
                         <barButtonItem key="leftBarButtonItem" title="Add/Del" id="JmE-W8-DMW">
                             <connections>
-                                <action selector="testPress:" destination="6mb-QC-Du9" id="m47-Uf-ubf"/>
+                                <action selector="btnShowPopoverAddRemove:" destination="6mb-QC-Du9" id="82x-kK-Rn2"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Options" style="done" id="Fo0-C4-lsz">
                             <connections>
-                                <action selector="btnShowPopover:" destination="6mb-QC-Du9" id="Soe-oO-cXm"/>
+                                <action selector="btnShowPopoverOptions:" destination="6mb-QC-Du9" id="0Va-Qt-erK"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -142,7 +142,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        <color key="backgroundColor" red="0.43529411764705883" green="0.44313725490196076" blue="0.47450980392156861" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
                         <segue destination="dxz-nm-bT6" kind="unwind" identifier="logoutFromPopover" unwindAction="logoutFromPopover:" id="KJu-gt-kOW"/>

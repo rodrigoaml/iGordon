@@ -155,10 +155,10 @@
     
      NSArray *keyUserInfo = [[notification userInfo] allKeys];
 
-     NSIndexPath* indexPath1 = [NSIndexPath indexPathForRow:(long)[self.userTablePreferences indexOfObject:[keyUserInfo objectAtIndex:0]]inSection:0];
+     NSIndexPath* indexPath = [NSIndexPath indexPathForRow:(long)[self.userTablePreferences indexOfObject:[keyUserInfo objectAtIndex:0]]inSection:0];
 
     
-     NSArray* indexArray = [NSArray arrayWithObjects:indexPath1, nil];
+     NSArray* indexArray = [NSArray arrayWithObjects:indexPath, nil];
     
 
     
@@ -397,17 +397,17 @@
 }
 
 
-- (IBAction)btnShowPopover:(UIBarButtonItem *)sender {
+- (IBAction)btnShowPopoverOptions:(UIBarButtonItem *)sender {
     [self performSegueWithIdentifier:@"showViewOptions" sender:self];
     
 }
 
-- (IBAction)testPress:(UIBarButtonItem *)sender {
+- (IBAction)btnShowPopoverAddRemove:(UIBarButtonItem *)sender {
     
     [self performSegueWithIdentifier:@"showAddOptions" sender:self];
 }
 
-
+//dismiss the popover before updating the table
 - (IBAction)dismissFromAddPopover:(UIStoryboardSegue *)segue {
     
     if (![segue.sourceViewController isBeingDismissed]) {

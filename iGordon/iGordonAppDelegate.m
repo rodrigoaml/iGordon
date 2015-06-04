@@ -6,13 +6,13 @@
 //  Copyright (c) 2015 Gordon College. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "iGordonAppDelegate.h"
 
-@interface AppDelegate ()
+@interface iGordonAppDelegate ()
 
 @end
 
-@implementation AppDelegate
+@implementation iGordonAppDelegate
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {

@@ -10,7 +10,7 @@
             <rect key="frame" x="0.0" y="0.0" width="403" height="489"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon-512.png" translatesAutoresizingMaskIntoConstraints="NO" id="ttB-Dv-v7c">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Default.png" translatesAutoresizingMaskIntoConstraints="NO" id="ttB-Dv-v7c">
                     <rect key="frame" x="0.0" y="0.0" width="403" height="489"/>
                 </imageView>
             </subviews>
@@ -21,6 +21,6 @@
         </view>
     </objects>
     <resources>
-        <image name="icon-512.png" width="512" height="512"/>
+        <image name="Default.png" width="320" height="480"/>
     </resources>
 </document>
