@@ -33,7 +33,7 @@ NSArray *itemMenuOptions;
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    itemMenuOptions = [NSArray arrayWithObjects:@"Gordon.edu", @"Computer Science", @"More", @"Logout", nil];
+    itemMenuOptions = [NSArray arrayWithObjects:@"Gordon.edu", @"Computer Science", @"Reorder", @"Logout", nil];
     
 }
 
@@ -87,7 +87,12 @@ NSArray *itemMenuOptions;
             url = @"http://www.cs.gordon.edu";
             break;
         case 2:
-            NSLog(@"NOT IMPLEMENTED YET");
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"enableReorderingAtMainView"
+                                                                object:self
+                                                              userInfo:nil];
+            
+            [self dismissViewControllerAnimated:YES completion:nil];
             break;
         case 3:
             [self performSegueWithIdentifier:@"logoutFromPopover" sender:self];

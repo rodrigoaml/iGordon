@@ -18,6 +18,8 @@
 @property (nonatomic, weak) UITableView *tableViewData ;
 
 @property (nonatomic, strong) NSMutableArray *userTablePreferences;
+@property (nonatomic) UIButton *btnDoneReordering;
+
 
 @end
 
@@ -103,7 +105,12 @@
                                        }];
     
    
-    
+    self.btnDoneReordering = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    self.btnDoneReordering.frame = CGRectMake(20, self.view.frame.size.height - 50 + 5, self.view.frame.size.width - 20 - 20, 50 - 10);
+    [self.btnDoneReordering setTitle:@"Done" forState:UIControlStateNormal];
+    [self.btnDoneReordering setHidden:YES];
+    [self.btnDoneReordering addTarget:self action:@selector(deactivateEditionAtTableView) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.btnDoneReordering];
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -117,6 +124,14 @@
                                              selector:@selector(updateTableAfterUpdateAtUserPreferences:)
                                                  name:@"userPreferencesUpdated"
                                                object:nil];
+    
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(activatesReorderingFromPopoverNotification)
+                                                 name:@"enableReorderingAtMainView"
+                                               object:nil];
+    
     
     //used to make the table get closer to the navigation bar
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -159,8 +174,14 @@
 
 -(void)activatesReorderingFromPopoverNotification{
     
+    [self.btnDoneReordering setHidden:NO];
     [self.tableViewData setEditing:YES animated:YES];
     
+}
+
+-(void)deactivateEditionAtTableView{
+    [self.tableViewData setEditing:NO animated:YES];
+    [self.btnDoneReordering setHidden:YES];
 }
 
 

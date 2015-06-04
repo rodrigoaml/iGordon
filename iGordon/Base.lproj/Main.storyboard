@@ -97,7 +97,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="iGordon" id="AXB-za-U7H">
-                        <barButtonItem key="leftBarButtonItem" title="Edit" id="JmE-W8-DMW">
+                        <barButtonItem key="leftBarButtonItem" title="Add/Del" id="JmE-W8-DMW">
                             <connections>
                                 <action selector="testPress:" destination="6mb-QC-Du9" id="m47-Uf-ubf"/>
                             </connections>
