@@ -13,7 +13,7 @@
 
 @property (strong, nonatomic) IBOutlet UITextField *txtUserName;
 @property (strong, nonatomic) IBOutlet UITextField *txtUserPassword;
-@property (retain, nonatomic) IBOutlet UIImageView *imgGocoChapel;
+@property (strong, nonatomic) IBOutlet UIImageView *imgGocoChapel;
 @property (weak, nonatomic) IBOutlet UILabel *lblUsername;
 @property (weak, nonatomic) IBOutlet UILabel *lblPassword;
 

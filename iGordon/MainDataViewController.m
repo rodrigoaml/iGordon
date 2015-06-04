@@ -2,6 +2,15 @@
 //  ViewController.m
 //  iGordon
 //
+//  Class main functions are: Show the Results on a tableView ;
+//  Offer to Popover: AddEdit ; Options
+//                    Add/Edit - Gives the user a chance to select
+//                     only the relevant endpoints from server,
+//                     i.e: Chapel Credits, Meal Points, etc.
+//
+//                     Option - Show options as links to Gordon
+//                      websites, logout and reorder the table.
+//
 //  Created by Rodrigo Amaral on 5/19/15.
 //  Copyright (c) 2015 Gordon College. All rights reserved.
 //
@@ -93,11 +102,9 @@
     
     self.endPointsDictionary = [NSMutableDictionary
             dictionaryWithDictionary:@{
-                                       
-                                       
-                                       [NSString stringWithFormat:@"%@",chapelCreditEndPoint.name ]: chapelCreditEndPoint,
-                                       [NSString stringWithFormat:@"%@",mealPointsEndPoint.name] : mealPointsEndPoint,
-                                       [NSString stringWithFormat:@"%@",mealPointsPerDayEndPoint.name] : mealPointsPerDayEndPoint,
+                                      [NSString stringWithFormat:@"%@",chapelCreditEndPoint.name ]: chapelCreditEndPoint,
+                                      [NSString stringWithFormat:@"%@",mealPointsEndPoint.name] : mealPointsEndPoint,
+                                      [NSString stringWithFormat:@"%@",mealPointsPerDayEndPoint.name] : mealPointsPerDayEndPoint,
                                       [NSString stringWithFormat:@"%@", daysleftInSemesterEndPoint.name] : daysleftInSemesterEndPoint,
                                       [NSString stringWithFormat:@"%@", studentIdEndPoint.name ]: studentIdEndPoint,
                                       [NSString stringWithFormat:@"%@", temperatureEndPoint.name ]: temperatureEndPoint
@@ -106,10 +113,15 @@
     
    
     self.btnDoneReordering = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.btnDoneReordering.frame = CGRectMake(20, self.view.frame.size.height - 50 + 5, self.view.frame.size.width - 20 - 20, 50 - 10);
+    self.btnDoneReordering.frame = CGRectMake(20, self.view.frame.size.height - 50 + 5,
+                                              self.view.frame.size.width - 20 - 20, 50 - 10);
+    
     [self.btnDoneReordering setTitle:@"Done" forState:UIControlStateNormal];
     [self.btnDoneReordering setHidden:YES];
-    [self.btnDoneReordering addTarget:self action:@selector(deactivateEditionAtTableView) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self.btnDoneReordering addTarget:self action:@selector(deactivateEditionAtTableView)
+                     forControlEvents:UIControlEventTouchUpInside];
+    
     [self.view addSubview:self.btnDoneReordering];
     
     
@@ -155,25 +167,23 @@
     
      NSArray *keyUserInfo = [[notification userInfo] allKeys];
 
-     NSIndexPath* indexPath = [NSIndexPath indexPathForRow:(long)[self.userTablePreferences indexOfObject:[keyUserInfo objectAtIndex:0]]inSection:0];
+     NSIndexPath* indexPath = [NSIndexPath indexPathForRow:(long)[self.userTablePreferences
+                                                                  indexOfObject:[keyUserInfo objectAtIndex:0]]inSection:0];
 
     
      NSArray* indexArray = [NSArray arrayWithObjects:indexPath, nil];
     
-
     
      [self.tableViewData beginUpdates];
     
-     [self.tableViewData reloadRowsAtIndexPaths:indexArray withRowAnimation:UITableViewRowAnimationFade];
+     [self.tableViewData reloadRowsAtIndexPaths:indexArray
+                                                withRowAnimation:UITableViewRowAnimationFade];
     
      [self.tableViewData endUpdates];
-    
-    
     
 }
 
 -(void)activatesReorderingFromPopoverNotification{
-    
     [self.btnDoneReordering setHidden:NO];
     [self.tableViewData setEditing:YES animated:YES];
     
@@ -193,13 +203,13 @@
     NSMutableArray *copyOfUserTablePreferences = [self.userTablePreferences mutableCopy];
     
     
-    
     for(NSObject *obj in tempUserPreferencesChanges){
         
         
         
         if(![copyOfUserTablePreferences containsObject:obj]) {
-            NSIndexPath* indexPath = [NSIndexPath indexPathForRow:(long)[tempUserPreferencesChanges indexOfObject:obj]inSection:0];
+            NSIndexPath* indexPath = [NSIndexPath indexPathForRow:(long)[tempUserPreferencesChanges
+                                                                         indexOfObject:obj]inSection:0];
             
             [self.userTablePreferences insertObject:obj atIndex:indexPath.row];
             [self.tableViewData insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -210,10 +220,10 @@
     for(NSObject *obj in copyOfUserTablePreferences){
         
         
-        
         if(![tempUserPreferencesChanges containsObject:obj]){
             
-            NSIndexPath* indexPath = [NSIndexPath indexPathForRow:(long)[self.userTablePreferences indexOfObject:obj]inSection:0];
+            NSIndexPath* indexPath = [NSIndexPath indexPathForRow:(long)[self.userTablePreferences
+                                                                              indexOfObject:obj]inSection:0];
             
             
             [self.userTablePreferences removeObjectAtIndex:indexPath.row];
@@ -260,7 +270,8 @@
     self.tableViewData = tableView;
     static NSString *simpleTableIdentifier = @"tableCellDesignUserDataOptions";
     
-    TableViewCellUserData *cell = (TableViewCellUserData *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    TableViewCellUserData *cell = (TableViewCellUserData *)[tableView dequeueReusableCellWithIdentifier:
+                                                                                  simpleTableIdentifier];
     
     if (cell == nil)
     {
@@ -276,10 +287,13 @@
     
     SEL selector = NSSelectorFromString(tempEndPoint.color);
     cell.thumbnailImageView.backgroundColor = [UIColor  performSelector:selector];
+    
     cell.backgroundColor = [UIColor performSelector:selector];
     cell.dataDescriptionLabel.textColor = [UIColor whiteColor];
+    
     cell.dataResultFromServerLabel.textColor = [UIColor whiteColor];
-    cell.dataResultFromServerLabel.text = [NSString stringWithFormat:@"%@",tempEndPoint.value == nil ? @"-" : tempEndPoint.value];
+    cell.dataResultFromServerLabel.text = [NSString stringWithFormat:@"%@",tempEndPoint.value == nil
+                                                                        ? @"-" : tempEndPoint.value];
         
     
     return cell;
@@ -303,9 +317,8 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    self.tableViewData = tableView;
-    
-    [[self.endPointsDictionary objectForKey:[self.userTablePreferences objectAtIndex:indexPath.row]] loadDataFromServer:self.userProfile];
+    [[self.endPointsDictionary objectForKey:[self.userTablePreferences objectAtIndex:indexPath.row]]
+                                             loadDataFromServer:self.userProfile];
     
     
     TableViewCellUserData *cell = (TableViewCellUserData *)[tableView cellForRowAtIndexPath:indexPath];
@@ -320,19 +333,6 @@
     
 }
 
-
-- (void)   tableView:(UITableView *)tableView
-  commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
-   forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // If the table view is asking to commit a delete command...
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        
-        [self.userTablePreferences removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath]
-                         withRowAnimation:UITableViewRowAnimationFade];
-    }
-}
 
 - (void)   tableView:(UITableView *)tableView
   moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath
@@ -356,7 +356,6 @@
         UIViewController *destNav = (PopoverViewController *)segue.destinationViewController;
         destNav.preferredContentSize = CGSizeMake(200, 170);
        
-        
         
         UIPopoverPresentationController *popPC = destNav.popoverPresentationController;
 

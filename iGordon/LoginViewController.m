@@ -3,6 +3,13 @@
 //  iGordon
 //
 //  Created by Rodrigo Amaral on 5/19/15.
+//
+//  Class main funtions are login and pass the userProfile to
+//  the MainDataViewController class.
+//
+//
+//
+//
 //  Copyright (c) 2015 Gordon College. All rights reserved.
 //
 
@@ -68,7 +75,8 @@
     [self performLoginAtServer];
     
     // necessary for the error response that takes a long time when the credentials don't exist
-    [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(returnsErrorMessageBadLogin) userInfo:nil repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(returnsErrorMessageBadLogin)
+                                                                    userInfo:nil repeats:NO];
   
 }
 
@@ -77,7 +85,9 @@
     
     
     NSString *requestString = @"http://api.adamvig.com/gocostudent/2.2/checklogin?username=";
-    requestString  = [requestString stringByAppendingFormat:@"%@%@%@",self.userGordonName,@"&password=",self.userGordonPassword];
+    
+    requestString  = [requestString stringByAppendingFormat:@"%@%@%@",self.userGordonName,
+                                                        @"&password=",self.userGordonPassword];
     
     NSURL *url = [NSURL URLWithString:requestString];
     NSURLRequest *req = [NSURLRequest requestWithURL:url];
@@ -115,10 +125,17 @@
 
 -(void)viewDidDisappear:(BOOL)animated
 {
-    [self.lblEnterYourUserPass performSelectorOnMainThread : @selector(setTextColor:) withObject:[UIColor whiteColor] waitUntilDone:NO];
-    [self.lblUsername performSelectorOnMainThread : @selector(setTextColor:) withObject:[UIColor whiteColor] waitUntilDone:NO];
-    [self.lblPassword performSelectorOnMainThread : @selector(setTextColor:) withObject:[UIColor whiteColor] waitUntilDone:NO];
-    [self.lblEnterYourUserPass performSelectorOnMainThread : @selector(setText:) withObject:@"Enter your credentials for Go Gordon" waitUntilDone:NO];
+    [self.lblEnterYourUserPass performSelectorOnMainThread : @selector(setTextColor:) withObject:[UIColor whiteColor]
+                                                                                      waitUntilDone:NO];
+    
+    [self.lblUsername performSelectorOnMainThread : @selector(setTextColor:) withObject:[UIColor whiteColor]
+                                                                             waitUntilDone:NO];
+    
+    [self.lblPassword performSelectorOnMainThread : @selector(setTextColor:) withObject:[UIColor whiteColor]
+                                                                             waitUntilDone:NO];
+    
+    [self.lblEnterYourUserPass performSelectorOnMainThread : @selector(setText:) withObject:@"Enter your credentials for Go Gordon"
+                                                                                 waitUntilDone:NO];
 }
 
 
@@ -126,10 +143,17 @@
 -(void)returnsErrorMessageBadLogin
 {
  
-        [self.lblEnterYourUserPass performSelectorOnMainThread : @selector(setTextColor:) withObject:[UIColor orangeColor] waitUntilDone:NO];
-        [self.lblUsername performSelectorOnMainThread : @selector(setTextColor:) withObject:[UIColor redColor] waitUntilDone:NO];
-        [self.lblPassword performSelectorOnMainThread : @selector(setTextColor:) withObject:[UIColor redColor] waitUntilDone:NO];
-        [self.lblEnterYourUserPass performSelectorOnMainThread : @selector(setText:) withObject:@"User/password incorrect" waitUntilDone:NO];
+        [self.lblEnterYourUserPass performSelectorOnMainThread : @selector(setTextColor:) withObject:[UIColor orangeColor]
+                                                                                          waitUntilDone:NO];
+    
+        [self.lblUsername performSelectorOnMainThread : @selector(setTextColor:) withObject:[UIColor redColor]
+                                                                                 waitUntilDone:NO];
+    
+        [self.lblPassword performSelectorOnMainThread : @selector(setTextColor:) withObject:[UIColor redColor]
+                                                                                 waitUntilDone:NO];
+    
+        [self.lblEnterYourUserPass performSelectorOnMainThread : @selector(setText:) withObject:@"User/password incorrect"
+                                                                                     waitUntilDone:NO];
     
 }
 
@@ -145,15 +169,16 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-        //Defines where the segue goes
-        self.mainDataViewController  = (MainDataViewController *)segue.destinationViewController;
+    //Defines where the segue goes
+    self.mainDataViewController  = (MainDataViewController *)segue.destinationViewController;
     
-        //creates a NSDictionary with the user profile data ( username and password )
-        NSDictionary *normalDict = [[NSDictionary alloc]initWithObjectsAndKeys:[NSString stringWithFormat: @"%@", self.userGordonName],@"username",[NSString stringWithFormat: @"%@", self.userGordonPassword],@"password",nil];
+    //creates a NSDictionary with the user profile data ( username and password )
+    NSDictionary *normalDict = [[NSDictionary alloc]initWithObjectsAndKeys:[NSString stringWithFormat: @"%@", self.userGordonName],
+                                          @"username",[NSString stringWithFormat: @"%@", self.userGordonPassword],@"password",nil];
     
     
-        //Store the user data in the next ViewControlles for search purposes
-        self.mainDataViewController.userProfile = normalDict;
+    //Store the user data in the next ViewControlles for search purposes
+    self.mainDataViewController.userProfile = normalDict;
     
 
     
@@ -163,15 +188,31 @@
 
 - (IBAction)logoutFromPopover:(UIStoryboardSegue *)segue {
     
-    [self.lblEnterYourUserPass performSelectorOnMainThread : @selector(setTextColor:) withObject:[UIColor whiteColor] waitUntilDone:NO];
-    [self.lblUsername performSelectorOnMainThread : @selector(setTextColor:) withObject:[UIColor whiteColor] waitUntilDone:NO];
-    [self.lblPassword performSelectorOnMainThread : @selector(setTextColor:) withObject:[UIColor whiteColor] waitUntilDone:NO];
-    [self.lblEnterYourUserPass performSelectorOnMainThread : @selector(setText:) withObject:@"Enter your credentials for Go Gordon" waitUntilDone:NO];
-    [self.lblUsername performSelectorOnMainThread : @selector(setText:) withObject:@"Username" waitUntilDone:NO];
-    [self.lblPassword performSelectorOnMainThread : @selector(setText:) withObject:@"Password" waitUntilDone:NO];
+    [self.lblEnterYourUserPass performSelectorOnMainThread : @selector(setTextColor:) withObject:[UIColor whiteColor]
+                                                                                      waitUntilDone:NO];
     
-    [self.txtUserName performSelectorOnMainThread : @selector(setText:) withObject:@"" waitUntilDone:NO];
-    [self.txtUserPassword performSelectorOnMainThread : @selector(setText:) withObject:@"" waitUntilDone:NO];
+    [self.lblUsername performSelectorOnMainThread : @selector(setTextColor:) withObject:[UIColor whiteColor]
+                                                                             waitUntilDone:NO];
+    
+    [self.lblPassword performSelectorOnMainThread : @selector(setTextColor:) withObject:[UIColor whiteColor]
+                                                                             waitUntilDone:NO];
+    
+    [self.lblEnterYourUserPass performSelectorOnMainThread : @selector(setText:) withObject:@"Enter your credentials for Go Gordon"
+                                                                                 waitUntilDone:NO];
+    
+    [self.lblUsername performSelectorOnMainThread : @selector(setText:) withObject:@"Username"
+                                                                        waitUntilDone:NO];
+    
+    [self.lblPassword performSelectorOnMainThread : @selector(setText:) withObject:@"Password"
+                                                                        waitUntilDone:NO];
+    
+    [self.txtUserName performSelectorOnMainThread : @selector(setText:) withObject:@""
+                                                                        waitUntilDone:NO];
+    
+    [self.txtUserPassword performSelectorOnMainThread : @selector(setText:) withObject:@""
+                                                                            waitUntilDone:NO];
+    
+    
     
     if (![segue.sourceViewController isBeingDismissed]) {
         [segue.sourceViewController dismissViewControllerAnimated:YES completion:nil];

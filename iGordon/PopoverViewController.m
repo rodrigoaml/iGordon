@@ -2,6 +2,10 @@
 //  PopoverViewController.m
 //  iGordon
 //
+//  Class return a tableViewDataSource to be used in
+//  the Popover Options in the MainDataViewController
+//
+//
 //  Created by Rodrigo Amaral on 5/26/15.
 //  Copyright (c) 2015 Gordon College. All rights reserved.
 //
@@ -22,7 +26,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.itemMenuOptions = [NSArray arrayWithObjects:@"Gordon.edu", @"Computer Science", @"Reorder", @"Logout", nil];
+    self.itemMenuOptions = [NSArray arrayWithObjects:@"Gordon.edu",
+                                                     @"Computer Science",
+                                                     @"Reorder",
+                                                     @"Logout", nil];
     
 }
 
@@ -44,8 +51,10 @@
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     static NSString *CellIdentifier = @"cellIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
@@ -75,8 +84,7 @@
         case 2:
             
             [[NSNotificationCenter defaultCenter] postNotificationName:@"enableReorderingAtMainView"
-                                                                object:self
-                                                              userInfo:nil];
+                                                  object:self userInfo:nil];
             
             [self dismissViewControllerAnimated:YES completion:nil];
             break;

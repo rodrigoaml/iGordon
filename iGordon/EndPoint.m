@@ -2,6 +2,10 @@
 //  EndPoint.m
 //  iGordon
 //
+//  Class is a model for the EndPoints from the server,
+//  it returns a notification every time a object is ready to be updated
+//  on the screen, usinf a NSNotification.
+//
 //  Created by Rodrigo Amaral on 5/29/15.
 //  Copyright (c) 2015 Gordon College. All rights reserved.
 //
