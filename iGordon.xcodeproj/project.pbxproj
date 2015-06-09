@@ -10,6 +10,11 @@
 		A34DABDB1B14FEA600A19DE8 /* PopoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A34DABDA1B14FEA600A19DE8 /* PopoverViewController.m */; };
 		A356C02D1B18AC00005B9DFB /* EndPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = A356C02C1B18AC00005B9DFB /* EndPoint.m */; };
 		A356C0301B1E449F005B9DFB /* UserPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A356C02F1B1E449F005B9DFB /* UserPreferencesViewController.m */; };
+		A356C03E1B260685005B9DFB /* btnLogin.png in Resources */ = {isa = PBXBuildFile; fileRef = A356C03D1B260685005B9DFB /* btnLogin.png */; };
+		A356C0401B2608D0005B9DFB /* listIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = A356C03F1B2608D0005B9DFB /* listIcon.png */; };
+		A356C0421B263FD2005B9DFB /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = A356C0411B263FD2005B9DFB /* logo.png */; };
+		A356C0441B2643B4005B9DFB /* LogoIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A356C0431B2643B4005B9DFB /* LogoIcon@2x.png */; };
+		A356C0461B26447B005B9DFB /* LogoIcon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A356C0451B26447B005B9DFB /* LogoIcon-72@2x.png */; };
 		A35CF0DD1B0C01AB00356086 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A35CF0DC1B0C01AB00356086 /* main.m */; };
 		A35CF0E01B0C01AB00356086 /* iGordonAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A35CF0DF1B0C01AB00356086 /* iGordonAppDelegate.m */; };
 		A35CF0E31B0C01AB00356086 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A35CF0E21B0C01AB00356086 /* LoginViewController.m */; };
@@ -23,7 +28,6 @@
 		A35CF11D1B0EA62100356086 /* calculator.png in Resources */ = {isa = PBXBuildFile; fileRef = A35CF11C1B0EA62100356086 /* calculator.png */; };
 		A35CF1241B0EA75800356086 /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = A35CF11E1B0EA75800356086 /* calendar.png */; };
 		A35CF1251B0EA75800356086 /* chapel.png in Resources */ = {isa = PBXBuildFile; fileRef = A35CF11F1B0EA75800356086 /* chapel.png */; };
-		A35CF1261B0EA75800356086 /* logo.png in Resources */ = {isa = PBXBuildFile; fileRef = A35CF1201B0EA75800356086 /* logo.png */; };
 		A35CF1271B0EA75800356086 /* person.png in Resources */ = {isa = PBXBuildFile; fileRef = A35CF1211B0EA75800356086 /* person.png */; };
 		A35CF1281B0EA75800356086 /* silverware.png in Resources */ = {isa = PBXBuildFile; fileRef = A35CF1221B0EA75800356086 /* silverware.png */; };
 		A35CF1291B0EA75800356086 /* thermometer.png in Resources */ = {isa = PBXBuildFile; fileRef = A35CF1231B0EA75800356086 /* thermometer.png */; };
@@ -48,6 +52,11 @@
 		A356C02C1B18AC00005B9DFB /* EndPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EndPoint.m; sourceTree = "<group>"; };
 		A356C02E1B1E449F005B9DFB /* UserPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserPreferencesViewController.h; sourceTree = "<group>"; };
 		A356C02F1B1E449F005B9DFB /* UserPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPreferencesViewController.m; sourceTree = "<group>"; };
+		A356C03D1B260685005B9DFB /* btnLogin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btnLogin.png; sourceTree = "<group>"; };
+		A356C03F1B2608D0005B9DFB /* listIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = listIcon.png; sourceTree = "<group>"; };
+		A356C0411B263FD2005B9DFB /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
+		A356C0431B2643B4005B9DFB /* LogoIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LogoIcon@2x.png"; sourceTree = "<group>"; };
+		A356C0451B26447B005B9DFB /* LogoIcon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LogoIcon-72@2x.png"; sourceTree = "<group>"; };
 		A35CF0D71B0C01AB00356086 /* iGordon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iGordon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A35CF0DB1B0C01AB00356086 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A35CF0DC1B0C01AB00356086 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -68,7 +77,6 @@
 		A35CF11C1B0EA62100356086 /* calculator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calculator.png; sourceTree = "<group>"; };
 		A35CF11E1B0EA75800356086 /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar.png; sourceTree = "<group>"; };
 		A35CF11F1B0EA75800356086 /* chapel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chapel.png; sourceTree = "<group>"; };
-		A35CF1201B0EA75800356086 /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logo.png; sourceTree = "<group>"; };
 		A35CF1211B0EA75800356086 /* person.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = person.png; sourceTree = "<group>"; };
 		A35CF1221B0EA75800356086 /* silverware.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = silverware.png; sourceTree = "<group>"; };
 		A35CF1231B0EA75800356086 /* thermometer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thermometer.png; sourceTree = "<group>"; };
@@ -98,10 +106,14 @@
 		A356C0331B20D141005B9DFB /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				A356C03F1B2608D0005B9DFB /* listIcon.png */,
+				A356C0451B26447B005B9DFB /* LogoIcon-72@2x.png */,
+				A356C0431B2643B4005B9DFB /* LogoIcon@2x.png */,
+				A356C03D1B260685005B9DFB /* btnLogin.png */,
 				A35CF1081B0D5D0000356086 /* Default~iphone.png */,
 				A35CF11E1B0EA75800356086 /* calendar.png */,
+				A356C0411B263FD2005B9DFB /* logo.png */,
 				A35CF11F1B0EA75800356086 /* chapel.png */,
-				A35CF1201B0EA75800356086 /* logo.png */,
 				A35CF1211B0EA75800356086 /* person.png */,
 				A35CF1221B0EA75800356086 /* silverware.png */,
 				A35CF1231B0EA75800356086 /* thermometer.png */,
@@ -315,15 +327,19 @@
 				A35CF1241B0EA75800356086 /* calendar.png in Resources */,
 				A35CF1291B0EA75800356086 /* thermometer.png in Resources */,
 				A35CF0E61B0C01AB00356086 /* Main.storyboard in Resources */,
-				A35CF1261B0EA75800356086 /* logo.png in Resources */,
 				A35CF1251B0EA75800356086 /* chapel.png in Resources */,
 				A35CF12D1B1187BD00356086 /* tableCellDesignForUserDataOptions.xib in Resources */,
+				A356C0441B2643B4005B9DFB /* LogoIcon@2x.png in Resources */,
 				A35CF1271B0EA75800356086 /* person.png in Resources */,
+				A356C03E1B260685005B9DFB /* btnLogin.png in Resources */,
 				A35CF1071B0D35CD00356086 /* icon-512.png in Resources */,
+				A356C0461B26447B005B9DFB /* LogoIcon-72@2x.png in Resources */,
 				A35CF0EB1B0C01AB00356086 /* LaunchScreen.xib in Resources */,
 				A35CF1091B0D5D0000356086 /* Default~iphone.png in Resources */,
+				A356C0421B263FD2005B9DFB /* logo.png in Resources */,
 				A35CF0E81B0C01AB00356086 /* Images.xcassets in Resources */,
 				A35CF11D1B0EA62100356086 /* calculator.png in Resources */,
+				A356C0401B2608D0005B9DFB /* listIcon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

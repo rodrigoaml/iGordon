@@ -28,7 +28,6 @@
     
     self.itemMenuOptions = [NSArray arrayWithObjects:@"Gordon.edu",
                                                      @"Computer Science",
-                                                     @"Reorder",
                                                      @"Logout", nil];
     
 }
@@ -46,7 +45,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
     // Return the number of rows in the section.
-    return 4;
+    return [self.itemMenuOptions count];
 }
 
 
@@ -82,13 +81,6 @@
             url = @"http://www.cs.gordon.edu";
             break;
         case 2:
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"enableReorderingAtMainView"
-                                                  object:self userInfo:nil];
-            
-            [self dismissViewControllerAnimated:YES completion:nil];
-            break;
-        case 3:
             [self performSegueWithIdentifier:@"logoutFromPopover" sender:self];
             break;
     }

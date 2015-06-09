@@ -16,47 +16,48 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <imageView opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="LogoIcon-72.png" translatesAutoresizingMaskIntoConstraints="NO" id="In4-DX-WYN">
+                                <rect key="frame" x="75" y="83" width="144" height="225"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UC1-Ra-gpk">
-                                <rect key="frame" x="54" y="278" width="81" height="21"/>
+                                <rect key="frame" x="35" y="375" width="81" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MUL-i3-g7U">
-                                <rect key="frame" x="54" y="334" width="81" height="21"/>
+                                <rect key="frame" x="35" y="431" width="81" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Firstname.Lastname" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fFu-N8-Fld">
-                                <rect key="frame" x="122" y="269" width="147" height="30"/>
+                                <rect key="frame" x="103" y="366" width="172" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Gordon Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P5N-hq-tq8">
-                                <rect key="frame" x="122" y="325" width="147" height="30"/>
+                                <rect key="frame" x="103" y="422" width="172" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Enter your credentials for Go Gordon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JlO-c1-xFu">
-                                <rect key="frame" x="54" y="237" width="197" height="24"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <rect key="frame" x="35" y="334" width="197" height="24"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="11"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xDQ-H9-of1">
-                                <rect key="frame" x="153" y="376" width="80" height="22"/>
-                                <state key="normal" title="All Done!"/>
+                                <rect key="frame" x="35" y="473" width="240" height="42"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="18"/>
+                                <state key="normal" title="All Done!" backgroundImage="btnLogin.png"/>
                                 <connections>
                                     <action selector="btnLogin" destination="vXZ-lx-hvc" eventType="touchUpInside" id="GBc-VA-EpQ"/>
                                 </connections>
                             </button>
-                            <imageView opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon-512.png" translatesAutoresizingMaskIntoConstraints="NO" id="In4-DX-WYN">
-                                <rect key="frame" x="54" y="64" width="240" height="165"/>
-                                <color key="tintColor" red="0.019375423230000001" green="0.20870505589999999" blue="0.37614425509999999" alpha="1" colorSpace="calibratedRGB"/>
-                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.0" green="0.3002938913811366" blue="0.49019491792929293" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.25019927443730722" blue="0.4392156862745098" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.019375423230000001" green="0.20870505589999999" blue="0.37614425509999999" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="L7O-qR-7PH"/>
                     <connections>
@@ -71,7 +72,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-55" y="235"/>
+            <point key="canvasLocation" x="-418" y="67"/>
         </scene>
         <!--iGordon-->
         <scene sceneID="O6m-lA-f4Q">
@@ -97,9 +98,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="iGordon" id="AXB-za-U7H">
-                        <barButtonItem key="leftBarButtonItem" title="Add/Del" id="JmE-W8-DMW">
+                        <barButtonItem key="leftBarButtonItem" id="qVe-IG-zuc">
                             <connections>
-                                <action selector="btnShowPopoverAddRemove:" destination="6mb-QC-Du9" id="82x-kK-Rn2"/>
+                                <action selector="btnShowPopoverAddRemove:" destination="6mb-QC-Du9" id="ZiP-Uu-Mln"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Options" style="done" id="Fo0-C4-lsz">
@@ -112,7 +113,7 @@
                         <segue destination="WMO-ZK-fOh" kind="popoverPresentation" identifier="showViewOptions" popoverAnchorBarButtonItem="Fo0-C4-lsz" id="eXM-jT-mlE">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES"/>
                         </segue>
-                        <segue destination="tOm-u9-t3D" kind="popoverPresentation" identifier="showAddOptions" popoverAnchorBarButtonItem="JmE-W8-DMW" id="y0Q-s0-rqG">
+                        <segue destination="tOm-u9-t3D" kind="popoverPresentation" identifier="showAddOptions" popoverAnchorBarButtonItem="qVe-IG-zuc" id="y0Q-s0-rqG">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES"/>
                         </segue>
                     </connections>
@@ -201,10 +202,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bot-DP-Agv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-738" y="235"/>
+            <point key="canvasLocation" x="-1137" y="419"/>
         </scene>
     </scenes>
     <resources>
-        <image name="icon-512.png" width="512" height="512"/>
+        <image name="LogoIcon-72.png" width="72" height="72"/>
+        <image name="btnLogin.png" width="620" height="160"/>
     </resources>
 </document>

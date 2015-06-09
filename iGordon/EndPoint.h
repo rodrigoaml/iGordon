@@ -16,6 +16,8 @@
 
 @property (nonatomic, strong) NSString *value;
 @property (nonatomic, strong) NSString *color;
+@property (nonatomic, strong) NSArray *colorRGB;
+
 @property (nonatomic, strong) NSString *image;
 @property (nonatomic, strong) NSMutableData *responseData;
 

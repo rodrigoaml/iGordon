@@ -27,9 +27,8 @@
 @property (nonatomic, weak) UITableView *tableViewData ;
 
 @property (nonatomic, strong) NSMutableArray *userTablePreferences;
-@property (nonatomic) UIButton *btnDoneReordering;
-
-
+@property (nonatomic) UIBarButtonItem *btnShowAddOption;
+@property (nonatomic) UIBarButtonItem *btnReorder;
 @end
 
 
@@ -46,7 +45,32 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
- 
+    
+    
+    self.btnShowAddOption = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self
+                                                                          action:@selector(btnShowPopoverAddRemove:)];
+
+    
+   // UIButton *btnCustomReorder=[UIButton buttonWithType:UIButtonTypeCustom];
+   // [btnCustomReorder setFrame:CGRectMake(10.0, 2.0, 45.0, 40.0)];
+    
+   // [btnCustomReorder setImage:[UIImage imageNamed:@"listIcon.png"] forState:UIControlStateNormal];
+   // [btnCustomReorder addTarget:self action:@selector(activateReorder) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    self.btnReorder = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self
+                                                                 action:@selector(activateReorder)];
+   
+    
+    
+    // self.btnReorder = [[UIBarButtonItem alloc] initWithCustomView:btnCustomReorder];
+    
+    
+     
+    
+    [self.navigationItem setLeftBarButtonItems:[NSArray arrayWithObjects:self.btnShowAddOption, self.btnReorder, nil]];
+    
+    
     
     
     
@@ -63,6 +87,7 @@
     chapelCreditEndPoint.name = @"chapelcredits";
     chapelCreditEndPoint.cellDescription = @"CL&W credits" ;
     chapelCreditEndPoint.color = @"blueColor" ;
+    chapelCreditEndPoint.colorRGB = @[[NSNumber numberWithDouble:11/255.0],[NSNumber numberWithDouble:54/255.0],[NSNumber numberWithDouble:112/255.0]];
     chapelCreditEndPoint.image= @"chapel.png" ;
     
     EndPoint *mealPointsEndPoint = [[EndPoint alloc]init];
@@ -70,6 +95,7 @@
     mealPointsEndPoint.name = @"mealpoints";
     mealPointsEndPoint.cellDescription = @"MEALPOINTS" ;
     mealPointsEndPoint.color = @"orangeColor" ;
+    mealPointsEndPoint.colorRGB = @[[NSNumber numberWithDouble:236/255.0],[NSNumber numberWithDouble:147/255.0],[NSNumber numberWithDouble:34/255.0]];
     mealPointsEndPoint.image= @"silverware.png" ;
     
     EndPoint *mealPointsPerDayEndPoint = [[EndPoint alloc]init];
@@ -77,6 +103,7 @@
     mealPointsPerDayEndPoint.name = @"mealpointsperday";
     mealPointsPerDayEndPoint.cellDescription = @"MEALPOINTS LEFT/DAY" ;
     mealPointsPerDayEndPoint.color = @"purpleColor" ;
+    mealPointsPerDayEndPoint.colorRGB = @[[NSNumber numberWithDouble:130/255.0],[NSNumber numberWithDouble:54/255.0],[NSNumber numberWithDouble:178/255.0]];
     mealPointsPerDayEndPoint.image= @"calculator.png" ;
     
     EndPoint *daysleftInSemesterEndPoint = [[EndPoint alloc]init];
@@ -84,6 +111,7 @@
     daysleftInSemesterEndPoint.name = @"daysleftinsemester";
     daysleftInSemesterEndPoint.cellDescription = @"DAYS LEFT IN SEMESTER" ;
     daysleftInSemesterEndPoint.color = @"greenColor" ;
+    daysleftInSemesterEndPoint.colorRGB = @[[NSNumber numberWithDouble:88/255.0],[NSNumber numberWithDouble:248/255.0],[NSNumber numberWithDouble:151/255.0]];
     daysleftInSemesterEndPoint.image= @"calendar.png" ;
     
     EndPoint *studentIdEndPoint = [[EndPoint alloc]init];
@@ -91,6 +119,7 @@
     studentIdEndPoint.name = @"studentid";
     studentIdEndPoint.cellDescription = @"STUDENT ID" ;
     studentIdEndPoint.color = @"redColor" ;
+    studentIdEndPoint.colorRGB = @[[NSNumber numberWithDouble:236/255.0],[NSNumber numberWithDouble:90/255.0],[NSNumber numberWithDouble:91/255.0]];
     studentIdEndPoint.image= @"person.png" ;
     
     EndPoint *temperatureEndPoint = [[EndPoint alloc]init];
@@ -98,6 +127,7 @@
     temperatureEndPoint.name = @"temperature";
     temperatureEndPoint.cellDescription = @"TEMPERATURE" ;
     temperatureEndPoint.color = @"blueColor" ;
+    temperatureEndPoint.colorRGB = @[[NSNumber numberWithDouble:71/255.0],[NSNumber numberWithDouble:212/255.0],[NSNumber numberWithDouble:201/255.0]];
     temperatureEndPoint.image= @"thermometer.png" ;
     
     self.endPointsDictionary = [NSMutableDictionary
@@ -112,17 +142,7 @@
                                        }];
     
    
-    self.btnDoneReordering = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    self.btnDoneReordering.frame = CGRectMake(20, self.view.frame.size.height - 50 + 5,
-                                              self.view.frame.size.width - 20 - 20, 50 - 10);
-    
-    [self.btnDoneReordering setTitle:@"Done" forState:UIControlStateNormal];
-    [self.btnDoneReordering setHidden:YES];
-    
-    [self.btnDoneReordering addTarget:self action:@selector(deactivateEditionAtTableView)
-                     forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.view addSubview:self.btnDoneReordering];
+
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -133,15 +153,8 @@
     
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(updateTableAfterUpdateAtUserPreferences:)
+                                             selector:@selector(updateTableAfterChangesAtUserPreferences:)
                                                  name:@"userPreferencesUpdated"
-                                               object:nil];
-    
-    
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(activatesReorderingFromPopoverNotification)
-                                                 name:@"enableReorderingAtMainView"
                                                object:nil];
     
     
@@ -183,26 +196,30 @@
     
 }
 
--(void)activatesReorderingFromPopoverNotification{
-    [self.btnDoneReordering setHidden:NO];
-    [self.tableViewData setEditing:YES animated:YES];
-    
+
+
+-(void)activateReorder{
+    if([self.tableViewData isEditing]){
+        
+        [self.tableViewData setEditing:NO animated:YES];
+        
+    }else{
+        
+        [self.tableViewData setEditing:YES animated:YES];
+        
+    }
 }
 
--(void)deactivateEditionAtTableView{
-    [self.tableViewData setEditing:NO animated:YES];
-    [self.btnDoneReordering setHidden:YES];
-}
 
 
--(void)updateTableAfterUpdateAtUserPreferences:(NSNotification *)notification{
+-(void)updateTableAfterChangesAtUserPreferences:(NSNotification *)notification{
     
    
     NSMutableArray *tempUserPreferencesChanges = [[notification userInfo] objectForKey:@"userPreferences"];
     
     NSMutableArray *copyOfUserTablePreferences = [self.userTablePreferences mutableCopy];
     
-    
+    //adding new Options
     for(NSObject *obj in tempUserPreferencesChanges){
         
         
@@ -216,7 +233,7 @@
         }
     }
     
-    
+    //removing unchecked/deleted options
     for(NSObject *obj in copyOfUserTablePreferences){
         
         
@@ -233,8 +250,6 @@
         }
     }
     
-    
-
 }
 
 
@@ -261,13 +276,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    self.tableViewData = tableView;
     return [self.userTablePreferences count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    self.tableViewData = tableView;
+    
     static NSString *simpleTableIdentifier = @"tableCellDesignUserDataOptions";
     
     TableViewCellUserData *cell = (TableViewCellUserData *)[tableView dequeueReusableCellWithIdentifier:
@@ -285,10 +301,16 @@
     cell.dataDescriptionLabel.text = tempEndPoint.cellDescription;
     cell.thumbnailImageView.image = [UIImage imageNamed:tempEndPoint.image];
     
-    SEL selector = NSSelectorFromString(tempEndPoint.color);
-    cell.thumbnailImageView.backgroundColor = [UIColor  performSelector:selector];
+    UIColor *backGroundCellImg = [UIColor colorWithRed:[[tempEndPoint.colorRGB objectAtIndex:0] doubleValue]
+                                                 green:[[tempEndPoint.colorRGB objectAtIndex:1] doubleValue]
+                                                  blue:[[tempEndPoint.colorRGB objectAtIndex:2] doubleValue]
+                                                 alpha:1];
     
-    cell.backgroundColor = [UIColor performSelector:selector];
+
+    cell.thumbnailImageView.backgroundColor = backGroundCellImg;
+
+    cell.backgroundColor = backGroundCellImg;
+    
     cell.dataDescriptionLabel.textColor = [UIColor whiteColor];
     
     cell.dataResultFromServerLabel.textColor = [UIColor whiteColor];
@@ -305,7 +327,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 75;
+    return (self.tableViewData.frame.size.height / [self.userTablePreferences count])-5;
 }
 
 
@@ -376,7 +398,7 @@
         
         UIPopoverPresentationController *popPC = destNav.popoverPresentationController;
         
-        
+        popPC.barButtonItem = self.btnShowAddOption;
         popPC.sourceRect = CGRectMake(270, 15, 5, 10);
         
         popPC.delegate = self;

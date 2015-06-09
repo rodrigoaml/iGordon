@@ -72,11 +72,15 @@
     // Get NSString from NSData object in Base64
     self.userGordonPassword = [nsdata base64EncodedStringWithOptions:0];
     
-    [self performLoginAtServer];
+   //[self performLoginAtServer];
+    
+    
+    [self performSegueWithIdentifier:@"goMainDataTableView" sender:self.mainDataViewController];
+    
     
     // necessary for the error response that takes a long time when the credentials don't exist
-    [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(returnsErrorMessageBadLogin)
-                                                                    userInfo:nil repeats:NO];
+   // [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(returnsErrorMessageBadLogin)
+     //                                                               userInfo:nil repeats:NO];
   
 }
 

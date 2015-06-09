@@ -21,7 +21,7 @@
 @synthesize color = _color;
 @synthesize image = _image;
 @synthesize responseData = _responseData;
-
+@synthesize colorRGB = _colorRGB;
 
 
 
